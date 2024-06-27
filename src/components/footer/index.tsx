@@ -1,4 +1,3 @@
-import React from 'react'
 import "./footer.scss"
 import Marquee from '../marque'
 const Footer = () => {

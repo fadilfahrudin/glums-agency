@@ -1,4 +1,3 @@
-import React from 'react'
 import Logo from "../../assets/img/logo.png"
 import IcBurger from "../../assets/img/icon/burger-menu.png";
 import IcClose from "../../assets/img/icon/ic-close.png";
