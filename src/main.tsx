@@ -8,7 +8,9 @@ import Pointer from './components/pointer/index.tsx'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <ReduxProvider>
-      <Pointer />
+      {window.innerWidth > 1080 ?
+        <Pointer /> : null
+      }
       <AppRoutes />
     </ReduxProvider>
   </BrowserRouter>,
