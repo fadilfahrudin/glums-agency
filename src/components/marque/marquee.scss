@@ -1,0 +1,35 @@
+.marquee-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    &:hover {
+        .marquee {
+            animation-play-state: paused;
+        }
+    }
+}
+
+.marquee {
+    cursor: default;
+    white-space: nowrap;
+    position: relative;
+    animation: marquee 15s linear infinite;
+    span {
+        color: #f5f5f5;
+        font-size: clamp(30px, 10vw, 67.74px);
+        line-height: 150%;
+        font-style: normal;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

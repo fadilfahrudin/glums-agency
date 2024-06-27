@@ -1,0 +1,55 @@
+@use "../../styles/scss/media";
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    .carousel-container {
+        width: clamp(300px, 40vw, 400px);
+        height: auto;
+        overflow: hidden;
+        margin: auto;
+        @include media.mobile {
+            align-self: center;
+        }
+        @include media.ipad {
+            align-self: center;
+        }
+        .carousel-wrapper {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            .carousel-slide {
+                min-width: 100%;
+            }
+        }
+    }
+
+    .btn-container__slide {
+        display: flex;
+        justify-content: end;
+        @include media.mobile {
+            justify-content: center;
+        }
+        @include media.ipad {
+            justify-content: center;
+        }
+        gap: 0 24px;
+        margin-top: 20px;
+        .slide-btn__about {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #212121;
+            &.disabled {
+                background-color: #c0c0c0;
+                cursor: not-allowed;
+            }
+            &:first-child {
+                rotate: 180deg;
+            }
+        }
+    }
+}
