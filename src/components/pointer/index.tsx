@@ -8,7 +8,6 @@ export default function Pointer() {
     const { x, y, hovered } = useFollowPointer(ref);
     const [otherClass, setOtherClass] = useState("");
     useEffect(() => {
-        console.log(hovered)
         switch (hovered) {
             case "text-pointer":
                 setOtherClass("text-item");
