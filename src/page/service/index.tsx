@@ -8,41 +8,30 @@ import Dummyimg3 from "../../assets/img/dummy/dummy-2.png";
 import Dummyimg4 from "../../assets/img/dummy/dummy-3.png";
 import Gap from '../../components/gap';
 const Services = () => {
-    const flexBasis = useMotionValue(0);
-    const flexBasis2 = useMotionValue(1);
-    const flexBasis3 = useMotionValue(1);
-    const flexBasis4 = useMotionValue(1);
+    
 
     const ref = useRef(null)
-    const { scrollYProgress, scrollY } = useScroll({
+    const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start start", "end end"]
     });
 
-    const size1 = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
-    const size2 = useTransform(scrollYProgress, [0.25, 0.5], [1, 0]);
-    const size3 = useTransform(scrollYProgress, [0.5, 0.75], [1, 0]);
-    const size4 = useTransform(scrollYProgress, [0.75, 1], [1, 0]);
+    const width1 = useTransform(scrollYProgress, [0, 0.2], ['100%', '30%']);
+    const width2 = useTransform(scrollYProgress, [0, 0.3], ['30%', '100%']);
+    const width3 = useTransform(scrollYProgress, [0, 0.4], ['30%', '200%']);
+    const width4 = useTransform(scrollYProgress, [0.4, 1], ['30%', '300%']);
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        if (latest < 1000) {
-            flexBasis.set(0);
-            flexBasis2.set(1);
-        } else if (latest > 1000 && latest < 1400) {
-            flexBasis.set(1);
-            flexBasis2.set(0);
-            flexBasis3.set(1);
-            flexBasis4.set(1);
-        } else if (latest > 1400 && latest < 1800) {
-            flexBasis.set(0);
-            flexBasis2.set(1);
-            flexBasis3.set(0);
-            flexBasis4.set(1);
-        } else if (latest > 1800) {
-            flexBasis3.set(1);
-            flexBasis4.set(0);
-        }
-    })
+    const flexShrink1 = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+    const flexShrink2 = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+    const flexShrink3 = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+    const flexShrink4 = useTransform(scrollYProgress, [0.4, 1], [1, 0]);
+
+    const flexBasis1 = useTransform(scrollYProgress, [0, 0.2], ['none', '263px']);
+    const flexBasis2 = useTransform(scrollYProgress, [0, 0.3], ['none', '263px']);
+    const flexBasis3 = useTransform(scrollYProgress, [0, 0.4], ['none', '263px']);
+    const flexBasis4 = useTransform(scrollYProgress, [0.4, 1], ['none', '263px']);
+
+    
     return (
         <motion.main id='services' >
             <HeaderWording
@@ -55,7 +44,7 @@ const Services = () => {
             <div className="container">
                 <div id='wrapper-main' ref={ref} className="wrapper-main" style={{ height: '400vh' }}>
                     <div className="container-image">
-                        <motion.div style={{ flexBasis }} animate={{ flexBasis: flexBasis }} transition={{ duration: 0.5 }} className="img-item">
+                        <motion.div className="img-item" style={{width: width1}} transition={{duration: 0.5}}>
                             <img src={Dummyimg} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>
@@ -64,16 +53,16 @@ const Services = () => {
                                 <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
                             </div>
                         </motion.div>
-                        <motion.div style={{ flexBasis: flexBasis2 }} className="img-item">
+                        <motion.div  className="img-item" style={{width: width2}} transition={{duration: 0.5}}>
                             <img src={Dummyimg2} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>
                                 <div className='role'>Digital Marketing</div>
-                                <div className="title">Grow your business. Elevate your brand</div>
+                                <div className="title">Grow your busines. Elevate your brand</div>
                                 <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
                             </div>
                         </motion.div>
-                        <motion.div style={{ flexBasis: flexBasis3 }} className="img-item">
+                        <motion.div style={{width: width3}} transition={{duration: 0.5}} className="img-item">
                             <img src={Dummyimg3} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>
@@ -82,7 +71,7 @@ const Services = () => {
                                 <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
                             </div>
                         </motion.div>
-                        <motion.div style={{ flexBasis: flexShrink4 }} className="img-item">
+                        <motion.div style={{width: width4}} transition={{duration: 0.5}} className="img-item">
                             <img src={Dummyimg4} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>
