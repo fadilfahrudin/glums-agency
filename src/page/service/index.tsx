@@ -8,7 +8,7 @@ import Dummyimg3 from "../../assets/img/dummy/dummy-2.png";
 import Dummyimg4 from "../../assets/img/dummy/dummy-3.png";
 import Gap from '../../components/gap';
 const Services = () => {
-    
+
 
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({
@@ -18,8 +18,8 @@ const Services = () => {
 
     const width1 = useTransform(scrollYProgress, [0, 0.2], ['100%', '30%']);
     const width2 = useTransform(scrollYProgress, [0, 0.3], ['30%', '100%']);
-    const width3 = useTransform(scrollYProgress, [0, 0.4], ['30%', '200%']);
-    const width4 = useTransform(scrollYProgress, [0.4, 1], ['30%', '300%']);
+    const width3 = useTransform(scrollYProgress, [0, 0.4], ['30%', '100%']);
+    const width4 = useTransform(scrollYProgress, [0.4, 1], ['30%', '100%']);
 
     const flexShrink1 = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const flexShrink2 = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
@@ -31,7 +31,7 @@ const Services = () => {
     const flexBasis3 = useTransform(scrollYProgress, [0, 0.4], ['none', '263px']);
     const flexBasis4 = useTransform(scrollYProgress, [0.4, 1], ['none', '263px']);
 
-    
+
     return (
         <motion.main id='services' >
             <HeaderWording
@@ -44,7 +44,7 @@ const Services = () => {
             <div className="container">
                 <div id='wrapper-main' ref={ref} className="wrapper-main" style={{ height: '400vh' }}>
                     <div className="container-image">
-                        <motion.div className="img-item" style={{width: width1}} transition={{duration: 0.5}}>
+                        <motion.div className="img-item" style={{ width: width1 }} transition={{ duration: 0.5 }}>
                             <img src={Dummyimg} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>
@@ -53,7 +53,7 @@ const Services = () => {
                                 <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
                             </div>
                         </motion.div>
-                        <motion.div  className="img-item" style={{width: width2}} transition={{duration: 0.5}}>
+                        <motion.div className="img-item" style={{ width: width2 }} transition={{ duration: 0.5 }}>
                             <img src={Dummyimg2} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>
@@ -62,7 +62,7 @@ const Services = () => {
                                 <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
                             </div>
                         </motion.div>
-                        <motion.div style={{width: width3}} transition={{duration: 0.5}} className="img-item">
+                        <motion.div style={{ width: width3 }} transition={{ duration: 0.5 }} className="img-item">
                             <img src={Dummyimg3} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>
@@ -71,7 +71,7 @@ const Services = () => {
                                 <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
                             </div>
                         </motion.div>
-                        <motion.div style={{width: width4}} transition={{duration: 0.5}} className="img-item">
+                        <motion.div style={{ width: width4 }} transition={{ duration: 0.5 }} className="img-item">
                             <img src={Dummyimg4} alt="img" loading='lazy' width={549} height={793} />
                             <div className="info">
                                 <div className='number'>01</div>

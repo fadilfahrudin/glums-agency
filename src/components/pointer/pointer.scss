@@ -4,7 +4,8 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: rgb(40, 43, 43);
+    background-color: #fff;
+    mix-blend-mode: exclusion;
 
     pointer-events: none;
     &.hide {
@@ -17,7 +18,7 @@
             height 0.3s ease-in-out;
     }
     &.text-item {
-        opacity: 0.8;
+        // opacity: 0.8;
     }
     &.footer-list {
         animation: hideFooter 0.3s ease-in-out forwards;
