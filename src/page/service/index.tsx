@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { motion, useTransform, useScroll, useMotionValue, AnimatePresence, useMotionValueEvent } from 'framer-motion'
+import { motion } from 'framer-motion'
 import "./services.scss";
 import HeaderWording from '../../components/header-wording'
 import Dummyimg from "../../assets/img/dummy/service.png";
@@ -7,30 +6,39 @@ import Dummyimg2 from "../../assets/img/dummy/dummy-1.png";
 import Dummyimg3 from "../../assets/img/dummy/dummy-2.png";
 import Dummyimg4 from "../../assets/img/dummy/dummy-3.png";
 import Gap from '../../components/gap';
+import { useState } from 'react';
 const Services = () => {
 
-
-    const ref = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start start", "end end"]
-    });
-
-    const width1 = useTransform(scrollYProgress, [0, 0.2], ['100%', '30%']);
-    const width2 = useTransform(scrollYProgress, [0, 0.3], ['30%', '100%']);
-    const width3 = useTransform(scrollYProgress, [0, 0.4], ['30%', '100%']);
-    const width4 = useTransform(scrollYProgress, [0.4, 1], ['30%', '100%']);
-
-    const flexShrink1 = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-    const flexShrink2 = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-    const flexShrink3 = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-    const flexShrink4 = useTransform(scrollYProgress, [0.4, 1], [1, 0]);
-
-    const flexBasis1 = useTransform(scrollYProgress, [0, 0.2], ['none', '263px']);
-    const flexBasis2 = useTransform(scrollYProgress, [0, 0.3], ['none', '263px']);
-    const flexBasis3 = useTransform(scrollYProgress, [0, 0.4], ['none', '263px']);
-    const flexBasis4 = useTransform(scrollYProgress, [0.4, 1], ['none', '263px']);
-
+    const dataDummy = [
+        {
+            id: 1,
+            img: Dummyimg,
+            role: 'Digital Marketing',
+            title: 'Grow your business. Elevate your brand',
+            desc: 'Content Creation, Website Traffic Analysis, Social Media Management'
+        },
+        {
+            id: 2,
+            img: Dummyimg2,
+            role: 'Digital Marketing',
+            title: 'Grow your business. Elevate your brand',
+            desc: 'Content Creation, Website Traffic Analysis, Social Media Management'
+        },
+        {
+            id: 3,
+            img: Dummyimg3,
+            role: 'Digital Marketing',
+            title: 'Grow your business. Elevate your brand',
+            desc: 'Content Creation, Website Traffic Analysis, Social Media Management'
+        },
+        {
+            id: 4,
+            img: Dummyimg4,
+            role: 'Digital Marketing',
+            title: 'Grow your business. Elevate your brand',
+            desc: 'Content Creation, Website Traffic Analysis, Social Media Management'
+        }
+    ]
 
     return (
         <motion.main id='services' >
@@ -42,50 +50,10 @@ const Services = () => {
             />
 
             <div className="container">
-                <div id='wrapper-main' ref={ref} className="wrapper-main" style={{ height: '400vh' }}>
-                    <div className="container-image">
-                        <motion.div className="img-item" style={{ width: width1 }} transition={{ duration: 0.5 }}>
-                            <img src={Dummyimg} alt="img" loading='lazy' width={549} height={793} />
-                            <div className="info">
-                                <div className='number'>01</div>
-                                <div className='role'>Digital Marketing</div>
-                                <div className="title">Grow your business. Elevate your brand</div>
-                                <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
-                            </div>
-                        </motion.div>
-                        <motion.div className="img-item" style={{ width: width2 }} transition={{ duration: 0.5 }}>
-                            <img src={Dummyimg2} alt="img" loading='lazy' width={549} height={793} />
-                            <div className="info">
-                                <div className='number'>01</div>
-                                <div className='role'>Digital Marketing</div>
-                                <div className="title">Grow your busines. Elevate your brand</div>
-                                <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
-                            </div>
-                        </motion.div>
-                        <motion.div style={{ width: width3 }} transition={{ duration: 0.5 }} className="img-item">
-                            <img src={Dummyimg3} alt="img" loading='lazy' width={549} height={793} />
-                            <div className="info">
-                                <div className='number'>01</div>
-                                <div className='role'>Digital Marketing</div>
-                                <div className="title">Grow your business. Elevate your brand</div>
-                                <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
-                            </div>
-                        </motion.div>
-                        <motion.div style={{ width: width4 }} transition={{ duration: 0.5 }} className="img-item">
-                            <img src={Dummyimg4} alt="img" loading='lazy' width={549} height={793} />
-                            <div className="info">
-                                <div className='number'>01</div>
-                                <div className='role'>Digital Marketing</div>
-                                <div className="title">Grow your business. Elevate your brand</div>
-                                <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
-                            </div>
-                        </motion.div>
-
-                        {/* <CardImage id={1} scrollY={scrollY} scrollYProgress={scrollYProgress} />
-                        <CardImage id={2} scrollY={scrollY} scrollYProgress={scrollYProgress} />
-                        <CardImage id={3} scrollY={scrollY} scrollYProgress={scrollYProgress} />
-                        <CardImage id={4} scrollY={scrollY} scrollYProgress={scrollYProgress} /> */}
-                    </div>
+                <div id='wrapper-main' className="wrapper-main" >
+                    {
+                        dataDummy.map((data) => <CardImage key={data.id} {...data} />)
+                    }
                 </div>
             </div>
             <Gap height={118} />
@@ -93,16 +61,25 @@ const Services = () => {
     )
 }
 
-const CardImage = ({ scrollYProgress, scrollY, id }) => {
-    const flexBasis = useTransform(scrollYProgress, [0, 1], ['549px', '263px'])
+
+interface Props {
+    id: number,
+    img: string,
+    role: string,
+    title: string,
+    desc: string
+}
+const CardImage = ({ id, img, role, title, desc }: Props) => {
+    const [hoveredId, setHoveredId] = useState<number | null>(null)
+
     return (
-        <motion.div id={id} style={{ flexBasis: id }} className="img-item" >
-            <img src={Dummyimg} alt="img" loading='lazy' width={549} height={793} />
+        <motion.div onMouseEnter={() => setHoveredId(id)} onMouseLeave={() => setHoveredId(null)}  whileHover={{ flexBasis: '549px', flexShrink: 0 }} transition={{ duration: 1 }} className={`img-item ${hoveredId == id ? 'active' : ''}`} >
+            <img src={img} alt="img" loading='lazy' width={549} height={793} />
             <div className="info">
-                <div className='number'>01</div>
-                <div className='role'>Digital Marketing</div>
-                <div className="title">Grow your business. Elevate your brand</div>
-                <div className="desc">Content Creation, Website Traffic Analysis, Social Media Management</div>
+                <motion.div initial={{ y: 150 }} animate={{ y: hoveredId == id ? 0 : 150 }}  className='number'>0{id}</motion.div>
+                <motion.div initial={{ opacity: 0, y:20 }} animate={{ opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }} transition={{ duration: 0.3 }} className='role'>{role}</motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }} transition={{ duration: 0.3}} className="title">{title}</motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }} transition={{ duration: 0.3}} className="desc">{desc}</motion.div>
             </div>
         </motion.div>
     )

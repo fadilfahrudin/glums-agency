@@ -4,6 +4,7 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import { ReactLenis } from "lenis/react"
 import Services from "../page/service"
+import About from "../page/about"
 
 const AppRoutes = () => {
     return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
             <Routes>
                 <Route path="/" element={<WelcomePage />} />
                 <Route path="/services" element={<Services />} />
+                <Route path="/about" element={<About />} />
             </Routes>
             <Footer />
         </ReactLenis>
