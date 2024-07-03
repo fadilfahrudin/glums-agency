@@ -5,17 +5,27 @@ import Footer from "../components/footer"
 import { ReactLenis } from "lenis/react"
 import Services from "../page/service"
 import About from "../page/about"
+import { AnimatePresence } from "framer-motion"
+import Menu from "../components/menu"
+import { useAppSelector } from "../utils/reduxHooks"
 
 const AppRoutes = () => {
+    const { isBurgeMenu } = useAppSelector(state => state.burgerMenu)
+
     return (
         <ReactLenis root>
             <Header />
-            <Routes>
+            <Routes> 
                 <Route path="/" element={<WelcomePage />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/about" element={<About />} />
             </Routes>
             <Footer />
+            <AnimatePresence>
+                {isBurgeMenu &&
+                    (<Menu />)
+                }
+            </AnimatePresence>
         </ReactLenis>
     )
 }

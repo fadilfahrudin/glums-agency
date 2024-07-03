@@ -2,7 +2,7 @@
 
 #about {
     .team-name {
-        font-size: 100px;
+        font-size: clamp(50px, 10vw, 100px);;
         letter-spacing: -1px;
         color: #000;
     }
@@ -10,6 +10,12 @@
         width: 525px;
         font-size: 20px;
         color: #5E5E5E;
+        @include media.ipad{
+            width: 100%;
+        }
+        @include media.mobile{
+            width: 100%;
+        }
     }
 
     .wrapper-main {
@@ -20,7 +26,14 @@
         display: flex;
 
         @include media.mobile {
-            height: 70vh;
+            height: auto;
+            flex-direction: column;
+            overflow: auto;
+        }
+        @include media.ipad {
+            height: auto;
+            overflow: auto;
+            flex-direction: column;
         }
         .img-item {
             position: relative;
@@ -75,6 +88,27 @@
                 }
             }
 
+            @include media.mobile {
+                flex-shrink: 0;
+                flex-basis: 100%;
+                .info {
+                    left: 24px;
+                    .number {
+                        text-align: start;
+                    }
+                }
+            }
+            @include media.ipad {
+                flex-shrink: 0;
+                flex-basis: 100%;
+                .info {
+                    left: 24px;
+                    .number {
+                        text-align: start;
+                    }
+                }
+            }
+
             &.active {
                 .info {
                     left: 24px;
@@ -94,6 +128,12 @@
         width: 100%;
         .about-info{
             width: 618px;
+            @include media.ipad{
+                width: 100%;
+            }
+            @include media.mobile{
+                width: 100%;
+            }
             margin: auto;
             display: flex;
             flex-direction: column;
@@ -101,14 +141,26 @@
             gap: 24px;
             .title__info{
                 text-align: center;
-                font-size: 80px;
+                font-size: clamp(40px, 8vw, 80px);;
                 letter-spacing: -5px;
+                @include media.ipad{
+                    letter-spacing: -1px;
+                }
+                @include media.mobile{
+                    letter-spacing: -1px;
+                }
                 line-height: 100%;
                 color: #000;
             }
             .desc__info{
                 text-align: center;
                 width: 478px;
+                @include media.ipad{
+                    width: 100%;
+                }
+                @include media.mobile{
+                    width: 100%;
+                }
                 font-size: 20px;
                 letter-spacing: -1px;
                 color: #5E5E5E;

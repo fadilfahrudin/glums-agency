@@ -51,6 +51,15 @@ export default function Pointer() {
             case "small-ponter":
                 setOtherClass("small");
                 break;
+            case "arrowwrap__animate":
+                setOtherClass("small");
+                break;
+            case "arrow__item":
+                setOtherClass("small");
+                break;
+            case "arrows-icon":
+                setOtherClass("small");
+                break;
             default:
                 setOtherClass(" ");
                 break;

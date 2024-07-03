@@ -23,7 +23,7 @@ const Menu = () => {
         {
             'id': 2,
             'name': 'Service',
-            'path': '/service'
+            'path': '/services'
         },
         {
             'id': 3,

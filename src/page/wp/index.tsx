@@ -1,8 +1,6 @@
 import { useRef, useState } from 'react'
 import "./wp.scss";
-import { useAppSelector } from '../../utils/reduxHooks';
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import Menu from '../../components/menu';
+import { motion, useScroll, useTransform } from "framer-motion"
 import DummyImgService from "../../assets/img/dummy/dummy-1.png";
 import DummyImgService2 from "../../assets/img/dummy/dummy-2.png";
 import DummyImgService3 from "../../assets/img/dummy/dummy-3.png";
@@ -18,7 +16,6 @@ const WelcomePage = () => {
         target: ref,
         offset: ['-30vh', '100vh']
     })
-    const { isBurgeMenu } = useAppSelector(state => state.burgerMenu)
     const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1])
 
     const [servImg, setServImg] = useState('')
@@ -49,11 +46,6 @@ const WelcomePage = () => {
             </motion.section>
             {/* partner */}
             <PartnerWP />
-            <AnimatePresence>
-                {isBurgeMenu &&
-                    (<Menu />)
-                }
-            </AnimatePresence>
         </motion.main>
     )
 }

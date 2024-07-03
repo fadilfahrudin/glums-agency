@@ -9,7 +9,14 @@
         display: flex;
 
         @include media.mobile {
-            height: 70vh;
+            height: auto;
+            flex-direction: column;
+            overflow: auto;
+        }
+        @include media.ipad {
+            height: auto;
+            overflow: auto;
+            flex-direction: column;
         }
         .img-item {
             position: relative;
@@ -61,6 +68,27 @@
                     font-family: "HelveticaNeue-Light", sans-serif;
                     font-size: 12px;
                     color: #b0b0b0;
+                }
+            }
+
+            @include media.mobile {
+                flex-shrink: 0;
+                flex-basis: 100%;
+                .info {
+                    left: 24px;
+                    .number {
+                        text-align: start;
+                    }
+                }
+            }
+            @include media.ipad {
+                flex-shrink: 0;
+                flex-basis: 100%;
+                .info {
+                    left: 24px;
+                    .number {
+                        text-align: start;
+                    }
                 }
             }
 

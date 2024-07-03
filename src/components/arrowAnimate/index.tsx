@@ -8,7 +8,7 @@ interface Props {
     gap?: number,
     black?: boolean,
 }
-const ArrowAnimate = ({ isHovered, width, height, gap, black }: Props) => {
+const ArrowAnimate = ({ isHovered, width, height, gap, black }: Props) => { 
 
     return (
         <motion.span className='arrowWrap__animate' initial={{ rotate: 0 }} animate={{ rotate: isHovered && black ? -30 : 0 }}>
