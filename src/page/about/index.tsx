@@ -1,14 +1,33 @@
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import "./abaout.scss";
 import HeaderWording from '../../components/header-wording'
 import Dummyimg from "../../assets/img/dummy/about-profile.png";
 import Dummyimg2 from "../../assets/img/dummy/about.png";
 import Dummyimg3 from "../../assets/img/dummy/dummy-2.png";
 import Gap from '../../components/gap';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ArrowAnimate from '../../components/arrowAnimate';
 const About = () => {
     const [isHovered, setIsHovered] = useState(false)
+    const ref1 = useRef(null)
+    const ref2 = useRef(null)
+    const isInView = useInView( ref1, {
+        margin: '0px 0px -25% 0px',
+        once: true
+    })
+    const isInView2 = useInView( ref2, {
+        margin: '0px 0px -60% 0px',
+        once: true
+    })
+
+    const stacks = {
+        active: (custom: number) => ({ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0, transition: { duration: 0.5, delay: custom * 0.2 } }),
+        inActive: { y: 50, opacity: 0 },
+    }
+    const stacks2 = {
+        active: (custom: number) => ({ y: isInView2 ? 0 : 50, opacity: isInView2 ? 1 : 0, transition: { duration: 0.5, delay: custom * 0.2 } }),
+        inActive: { y: 50, opacity: 0 },
+    }
 
 
     const dataDummy = [
@@ -37,7 +56,7 @@ const About = () => {
     ]
 
     return (
-        <motion.main id='about' >
+        <motion.main  id='about' >
             <HeaderWording
                 width={79}
                 headline1='THE ACHITECTS'
@@ -47,9 +66,9 @@ const About = () => {
 
             
             <Gap height={60} />
-            <section className='container'>
-                <motion.div className='team-name'>Team Members</motion.div>
-                <motion.div className='team-desc'>We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.</motion.div>
+            <section  ref={ref1} className='container'>
+                <motion.div initial="inActive" variants={stacks} animate="active" custom={1} className='team-name'>Team Members</motion.div>
+                <motion.div initial="inActive" variants={stacks} animate="active" custom={2} className='team-desc'>We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.</motion.div>
             </section>
             <Gap height={48} />
 
@@ -60,15 +79,15 @@ const About = () => {
                     }
                 </div>
             </section>
-            <section className="container about-wrapper__info">
+            <section ref={ref2} className="container about-wrapper__info">
                 <div className="about-info">
-                    <motion.div className='title__info'>WE BELIEVE IN
+                    <motion.div initial="inActive" variants={stacks2} animate="active" custom={1} className='title__info'>WE BELIEVE IN
                     CREATING MAGIC </motion.div>
-                    <motion.div className='desc__info'>
+                    <motion.div initial="inActive" variants={stacks2} animate="active" custom={2} className='desc__info'>
                     We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.
                     </motion.div>
 
-                    <motion.a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} href='/about' className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></motion.a>
+                    <motion.a initial="inActive" variants={stacks2} animate="active" custom={3} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} href='/about' className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></motion.a>
                 </div>
             </section>
             <Gap height={118} />
