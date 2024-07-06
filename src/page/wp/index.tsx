@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import "./wp.scss";
-import { motion, useScroll, useTransform } from "framer-motion"
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import DummyImgService from "../../assets/img/dummy/dummy-1.png";
 import DummyImgService2 from "../../assets/img/dummy/dummy-2.png";
 import DummyImgService3 from "../../assets/img/dummy/dummy-3.png";
@@ -36,13 +36,13 @@ const WelcomePage = () => {
             <AboutWP />
             {/* service */}
             <motion.section className='section-service__wp' >
-                {servImg && <img className='bg__service' src={servImg} alt="menu" width={'100%'} height={'100%'} loading='lazy' />}
+                {servImg && <AnimatePresence><motion.img animate={{ opacity: 1}} initial={{ opacity: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className='bg__service' src={servImg} alt="menu" width={'100%'} height={'100%'} loading='lazy' /> </AnimatePresence>}
                 <div className="navigation__service">
-                    <a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService)} onMouseOut={() => setServImg('')} >Digital Marketing / </a>
-                    <a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService2)} onMouseOut={() => setServImg('')} >Graphic Designing / </a>
-                    <a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService3)} onMouseOut={() => setServImg('')}>Web & App Development / </a>
-                    <a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService4)} onMouseOut={() => setServImg('')}>Video & Photo Branding  </a>
-                    {servImg && <img src={servImg} className='thumb__service' alt="menu services" width={238} height={295} loading='lazy' />}
+                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService)} onMouseOut={() => setServImg('')} >Digital Marketing / </motion.a>
+                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService2)} onMouseOut={() => setServImg('')} >Graphic Designing / </motion.a>
+                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService3)} onMouseOut={() => setServImg('')}>Web & App Development / </motion.a>
+                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService4)} onMouseOut={() => setServImg('')}>Video & Photo Branding  </motion.a>
+                    {servImg && <AnimatePresence> <motion.img animate={{ opacity: 1, scale: 1 }} initial={{ opacity: 0 , scale: 0.5}} exit={{ opacity: 0 }}  transition={{ duration: 0.5 }} src={servImg} className='thumb__service' alt="menu services" width={238} height={295} loading='lazy' /> </AnimatePresence>}
                 </div>
             </motion.section>
             {/* partner */}
