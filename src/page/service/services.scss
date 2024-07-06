@@ -37,10 +37,18 @@
                 bottom: 35px;
                 left: 0;
                 .number {
+                    position: absolute;
+                    bottom: 2vh;
+                    right: 0%;
+                    left: 0%;
+                    margin: auto;
                     font-family: "HelveticaNeue-Bold", sans-serif;
                     color: #fff;
                     font-size: 100px;
-                    text-align: center;
+                    line-height: 100%;
+                    width: max-content;
+                    transition: all 0.5s ease-in-out 0.2s,bottom 0.5s ease-in-out 1s;
+
                 }
                 .role {
                     position: relative;
@@ -77,7 +85,9 @@
                 .info {
                     left: 24px;
                     .number {
-                        text-align: start;
+                        bottom: 15vh;
+                        right: 100%;
+                        left: 0%;
                     }
                 }
             }
@@ -87,7 +97,9 @@
                 .info {
                     left: 24px;
                     .number {
-                        text-align: start;
+                        bottom: 10vh;
+                        right: 100%;
+                        left: 0%;
                     }
                 }
             }
@@ -95,8 +107,12 @@
             &.active {
                 .info {
                     left: 24px;
-                    .number {
-                        text-align: start;
+                    transition: all 0.5s ease-in-out;
+                    .number{
+                        bottom: 10vh;
+                        right: 100%;
+                        left: 0%;
+                        transition: all 0.5s ease-in-out 1s ,bottom 0.5s ease-in-out 1.5s;
                     }
                 }
             }

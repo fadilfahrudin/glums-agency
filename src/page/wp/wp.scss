@@ -24,7 +24,7 @@
         padding-top: clamp(67px, 11vw, 100px);
         padding-bottom: 33px;
         display: flex;
-        flex-direction: column;
+        align-items: center;
         gap: 20px;
 
         .body__about {
@@ -228,43 +228,35 @@
         }
     }
     .section-partner__wp {
-        height: 100vh;
         width: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        .headeline__partner {
-            display: flex;
-            gap: 0 clamp(50px, 11vw, 157px);
-            img {
-                width: clamp(60px, 10vw, 98px);
-                height: clamp(50px, 10vw, 79px);
-                aspect-ratio: 1/2;
-                flex-shrink: 0;
-            }
-            .headeline__text {
-                span {
-                    display: block;
-                    font-family: "HelveticaNeue-Regular", sans-serif;
-                    font-size: clamp(50px, 10vw, 100px);
-                    color: #000;
-                    letter-spacing: -3px;
-                }
-                font-family: "HelveticaNeue-Light", sans-serif;
-                font-size: clamp(16px, 2vw, 24px);
-                text-align: center;
-            }
+        padding: 88px 0;
+        .headeline__text {
+            font-family: "HelveticaNeue-Regular", sans-serif;
+            font-size: clamp(14px, 1.5vw, 18px);
+            text-align: center;
+            color: #5E5E5E;
         }
         .list__partner {
             width: 80%;
             height: auto;
             display: flex;
             flex-wrap: wrap;
-            gap: 0 36px;
+            gap: 62px 32px;
             margin-top: 36px;
             justify-content: center;
             .item__partner {
+                background-color: #f7f8f9;
+                width: 261px;
+                height: 146px;
+                border-radius: 6px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 img {
                     max-width: 231px;
                     object-fit: contain;

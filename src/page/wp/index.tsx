@@ -14,7 +14,7 @@ const WelcomePage = () => {
 
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ['-30vh', '100vh']
+        offset: ['-50vh', '50vh']
     })
     const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1])
 
@@ -23,6 +23,7 @@ const WelcomePage = () => {
         <motion.main ref={ref} id='wp'  >
             {/* header */}
             <HeaderWording
+                homeWp={true}
                 headline1='BEYOND SOLUTION'
                 headline2='BEYOND EXPECTATION'
                 desc='Glums was founded with a vision to empower businesses of all sizes to thrive in the ever-evolving digital world.'

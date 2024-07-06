@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import TwoStar from "../../assets/img/icon/two-start.png"
 import { motion, useInView } from "framer-motion"
 import PartnerLogo1 from "../../assets/img/BlackRock, Inc..png";
 import PartnerLogo2 from "../../assets/img/Delta Air Lines, Inc..png";
@@ -37,7 +36,7 @@ const PartnerWP = () => {
 
     const ref = useRef(null)
     const isInView = useInView(ref, {
-        margin: "0px 0px -80% 0px",
+        margin: "0px 0px -40% 0px",
         once: true
     })
 
@@ -47,10 +46,7 @@ const PartnerWP = () => {
     }
     return (
         <motion.section ref={ref} className='section-partner__wp' >
-            <div className='headeline__partner'>
-                <motion.img src={TwoStar} width={98} height={79} style={{ scaleX: -1 }} />
-                <span className='headeline__text'><span>Our Partner</span> Who Has Put Their Trust In Us</span>
-                <motion.img src={TwoStar} width={98} height={79} /> </div>
+            <motion.div initial="inActive" animate="active" variants={stacks} className='headeline__text'>Trusted by the top companies in this industry</motion.div>
             <ul className='list__partner'>
                 {partnerLogo.map((logo, i) => (
                     <motion.li initial="inActive" animate="active" variants={stacks} custom={i + 1} className='item__partner' key={logo.id}><img src={logo.img} alt={logo.name} height={80} /></motion.li>

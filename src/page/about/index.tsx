@@ -33,6 +33,7 @@ const About = () => {
             title: 'Reihan',
             desc: 'Content Creation, Website Traffic Analysis, Social Media Management'
         },
+        
     ]
 
     return (
@@ -88,13 +89,13 @@ const CardImage = ({ id, img, role, title, desc, lenght }: Props) => {
     const [hoveredId, setHoveredId] = useState<number | null>(null)
 
     return (
-        <motion.div style={window.innerWidth > 1080 ?{width: `calc(100% / ${lenght})`}:{width: '100%'}} onMouseEnter={() => setHoveredId(id)} onMouseLeave={() => setHoveredId(null)}  whileHover={{ flexBasis: '549px', flexShrink: 0 }} transition={{ duration: 1 }} className={`img-item ${hoveredId == id ? 'active' : ''}`} >
+        <motion.div style={window.innerWidth > 1080 ?{width: `calc(100% / ${lenght})`}:{width: '100%'}} onMouseEnter={() => setHoveredId(id)} onMouseLeave={() => setHoveredId(null)}  whileHover={{ flexBasis: '549px', flexShrink: 0 }}  transition={{ duration: 1,  delay: 0.3 }} className={`img-item ${hoveredId == id ? 'active' : ''}`} >
             <img src={img} alt="img" loading='lazy' width={549} height={793} />
             <div className="info">
-                <motion.div initial={{ y: window.innerWidth > 1080 ? 150: 0 }} animate={window.innerWidth > 1080 ?{ y: hoveredId == id ? 0 : 150 }:''}  className='number'>0{id}</motion.div>
-                <motion.div initial={window.innerWidth > 1080 ? {  opacity: 0, y:20 }:{opacity: 1, y:0}} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }: ''} transition={{ duration: 0.3 }} className='role'>{role}</motion.div>
-                <motion.div initial={window.innerWidth > 1080 ? {  opacity: 0, y:20 }:{opacity: 1, y:0}} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }: ''} transition={{ duration: 0.3}} className="title">{title}</motion.div>
-                <motion.div initial={window.innerWidth > 1080 ? {  opacity: 0, y:20 }:{opacity: 1, y:0}} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }: ''} transition={{ duration: 0.3}} className="desc">{desc}</motion.div>
+                <motion.div className='number'>0{id}</motion.div>
+                <motion.div initial={window.innerWidth > 1080 ? {  opacity: 0, y:20, }:{opacity: 1, y:0}} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }: ''} transition={hoveredId == id ? {duration: 0.3, delay: 1.8 } : { duration: 0.3, delay: 0 }} className='role'>{role}</motion.div>
+                <motion.div initial={window.innerWidth > 1080 ? {  opacity: 0, y:20, }:{opacity: 1, y:0}} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }: ''} transition={hoveredId == id ? {duration: 0.3, delay: 2.1 } :{ duration: 0.3, delay: 0}} className="title">{title}</motion.div>
+                <motion.div initial={window.innerWidth > 1080 ? {  opacity: 0, y:20, }:{opacity: 1, y:0}} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0, y: hoveredId == id ? 0 : 20 }: ''} transition={hoveredId == id ? {duration: 0.3, delay: 2.4 } :{ duration: 0.3, delay: 0}} className="desc">{desc}</motion.div>
             </div>
         </motion.div>
     )

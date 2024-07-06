@@ -8,6 +8,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    &.home-wp{
+        min-height: max-content;
+        margin-bottom: 88px;
+    }
     .wording-wrapp {
         height: max-content;
         margin-bottom: 20vh;

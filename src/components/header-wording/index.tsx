@@ -11,9 +11,10 @@ interface Props {
     headline1: string,
     headline2: string,
     desc: string,
-    width?: number
+    width?: number,
+    homeWp?: boolean
 }
-const HeaderWording = ({ headline1, headline2, desc, width }: Props) => {
+const HeaderWording = ({ headline1, headline2, desc, width, homeWp }: Props) => {
 
 
     // State untuk menyimpan ukuran window
@@ -61,7 +62,7 @@ const HeaderWording = ({ headline1, headline2, desc, width }: Props) => {
     }
 
     return (
-        <motion.section ref={ref} className='section-text'>
+        <motion.section ref={ref} className={`section-text ${homeWp ? 'home-wp' : ''}`}>
             <div className="wording-wrapp" style={{ width: width ? `${width}%` : '' }}>
                 <div className='welcome-text'>
                     <motion.div className='text-item' >
