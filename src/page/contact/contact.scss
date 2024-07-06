@@ -1,0 +1,129 @@
+@use "../../styles/scss/media";
+
+#contact{
+    width: 100%;
+    height: auto;
+    margin-bottom: 134px;
+    padding: 5vw;
+    padding-top: 0;
+    .container{
+        display: flex;
+        margin-top: 10vh;
+
+        .form-section{
+            width: 50%;
+            @include media.ipad{
+                width: 100%;
+            }
+            @include media.mobile{
+                width: 100%;
+            }
+            .title-form{
+                font-family: "HelveticaNeue-Regular", sans-serif;
+                font-size: clamp(50px, 10vw, 80px);
+                line-height: 100%;
+                color: #000;
+                letter-spacing: -1px;
+                margin-bottom: 12px;
+            }
+            .desc-form{
+                width: 536px;
+                @include media.mobile{
+                    width: 100%;
+                }
+                @include media.ipad{
+                    width: 100%;
+                }
+                font-family: "HelveticaNeue-Regular", sans-serif;
+                font-size: clamp(16px, 3vw, 20px);
+                line-height: 130%;
+                color: #5E5E5E;
+                letter-spacing: 0.5px;
+                margin-bottom: 56px;
+            }
+            form{
+                label{
+                    display: block;
+                    margin-bottom: 27px;
+                    &:last-child{
+                        margin-bottom: 38px;
+                    }
+                    p{
+                        position: relative;
+                        z-index: 0;
+                        font-family: "HelveticaNeue-Medium", sans-serif;
+                        font-size: clamp(10px, 2vw, 14px);
+                        color: #6D7280;
+                        line-height: 150%;
+                        margin-bottom: 10px;
+                    }
+                    input{
+                        position: relative;
+                        z-index: 1;
+                        width: 100%;
+                        height: 50px;
+                        border-radius: 6px;
+                        background-color: #F9FAFB;
+                        border: 1px solid #D2D5DA;
+                        padding: 0 12px ;
+                        &:focus{
+                            outline: 1px solid #000;
+                        }
+                    }
+                    textarea{
+                        position: relative;
+                        z-index: 1;
+                        width: 100%;
+                        height: 150px;
+                        border-radius: 6px;
+                        background-color: #F9FAFB;
+                        border: 1px solid #D2D5DA;
+                        padding: 12px ;
+                        &:focus{
+                            outline: 1px solid #000;
+                        }
+                    }
+                }
+                .btn-submit{
+                    width: clamp(200px, 40vw, 400px);
+                    @include media.mobile{
+                        width: 100%;
+                    }
+                    height: 53px;
+                    cursor: pointer;
+                    border: 1px solid #000;
+                    border-radius: 30px;
+                    text-align: center;
+
+                    font-family: 'HelveticaNeue-Light', sans-serif;
+                    font-size: clamp(16px, 3vw, 24px);
+                    color: #000;
+                    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+                    background-color: transparent;
+                    &:hover{
+                        background-color: #000;
+                        color: #fff;
+                        transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+                    }
+                }
+            }
+        }
+        .img-hero{
+            width: 50%;
+            display: flex;
+            justify-content: end;
+
+            @include media.ipad{
+                display: none;
+            }
+            @include media.mobile{
+                display: none;
+            }
+            img{
+                object-fit: contain;
+                aspect-ratio: 9/16;
+            }
+        }
+    }
+
+}

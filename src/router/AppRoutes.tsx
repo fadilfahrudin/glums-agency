@@ -8,6 +8,7 @@ import About from "../page/about"
 import { AnimatePresence } from "framer-motion"
 import Menu from "../components/menu"
 import { useAppSelector } from "../utils/reduxHooks"
+import Contact from "../page/contact"
 
 const AppRoutes = () => {
     const { isBurgeMenu } = useAppSelector(state => state.burgerMenu)
@@ -19,6 +20,7 @@ const AppRoutes = () => {
                 <Route path="/" element={<WelcomePage />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
             </Routes>
             <Footer />
             <AnimatePresence>

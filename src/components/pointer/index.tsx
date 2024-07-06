@@ -60,6 +60,9 @@ export default function Pointer() {
             case "arrows-icon":
                 setOtherClass("small");
                 break;
+            case "btn-submit":
+                setOtherClass("small");
+                break;
             default:
                 setOtherClass(" ");
                 break;
