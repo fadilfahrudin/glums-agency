@@ -1,11 +1,9 @@
-import {motion, AnimatePresence} from 'framer-motion'
+import { motion } from 'framer-motion'
 import "./error-message.scss"
 
-const ErrorMessage = ({message}: {message: string}) => {
+const ErrorMessage = ({ message }: { message: string }) => {
   return (
-    <AnimatePresence>
-        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.5}} className="error-message">{message}</motion.div>
-    </AnimatePresence>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="error-message">{message}</motion.div>
   )
 }
 

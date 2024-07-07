@@ -1,16 +1,16 @@
 
 import HeroImg from "../../assets/img/contact-hero.png";
 import './contact.scss';
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import DOMPurify from 'dompurify';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import ErrorMessage from "../../components/error-message";
 
-const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 
 Yup.addMethod(Yup.string, 'email', function validateEmail(message) {
-    return this.matches(regex, {
+    return this.matches(emailPattern, {
         message,
         name: 'email',
         excludeEmptyString: true,
@@ -53,6 +53,8 @@ const ContactPage = () => {
         }
         console.log(sanitizedValues);
         // Send data to API
+
+        window.location.href = '/contact'
     }
 
 
@@ -73,30 +75,38 @@ const ContactPage = () => {
                                 <label htmlFor="name">
                                     <motion.p initial="inActive" animate="active" variants={stacks} custom={3}>Name</motion.p>
                                     <Field type="text" name="fullname" placeholder="Full Name" />
-                                    {errors.fullname && touched.fullname ? (
-                                        <ErrorMessage message={errors.fullname} />
-                                    ) : null}
+                                    <AnimatePresence>
+                                        {errors.fullname && touched.fullname ? (
+                                            <ErrorMessage message={errors.fullname} />
+                                        ) : null}
+                                    </AnimatePresence>
                                 </label>
                                 <label htmlFor="no-ho">
                                     <motion.p initial="inActive" animate="active" variants={stacks} custom={5}>Telephone Number</motion.p>
                                     <Field type="number" name="noHandphone" placeholder="Your Number" />
-                                    {errors.noHandphone && touched.noHandphone ? (
-                                        <ErrorMessage message={errors.noHandphone} />
-                                    ) : null}
+                                    <AnimatePresence>
+                                        {errors.noHandphone && touched.noHandphone ? (
+                                            <ErrorMessage message={errors.noHandphone} />
+                                        ) : null}
+                                    </AnimatePresence>
                                 </label>
                                 <label htmlFor="email">
                                     <motion.p initial="inActive" animate="active" variants={stacks} custom={6}>Email</motion.p>
                                     <Field type="email" name="email" placeholder="Your Email" />
-                                    {errors.email && touched.email ? (
-                                        <ErrorMessage message={errors.email} />
-                                    ) : null}
+                                    <AnimatePresence>
+                                        {errors.email && touched.email ? (
+                                            <ErrorMessage message={errors.email} />
+                                        ) : null}
+                                    </AnimatePresence>
                                 </label>
                                 <label htmlFor="message">
                                     <motion.p initial="inActive" animate="active" variants={stacks} custom={7}>Message</motion.p>
                                     <Field name="message" as="textarea" placeholder="Example text" />
-                                    {errors.message && touched.message ? (
-                                        <ErrorMessage message={errors.message} />
-                                    ) : null}
+                                    <AnimatePresence>
+                                        {errors.message && touched.message ? (
+                                            <ErrorMessage message={errors.message} />
+                                        ) : null}
+                                    </AnimatePresence>
                                 </label>
                                 <button className="btn-submit" type="submit">Submit</button>
                             </Form>
