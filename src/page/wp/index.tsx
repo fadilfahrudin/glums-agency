@@ -1,24 +1,49 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import "./wp.scss";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
-import DummyImgService from "../../assets/img/dummy/dummy-1.png";
-import DummyImgService2 from "../../assets/img/dummy/dummy-2.png";
-import DummyImgService3 from "../../assets/img/dummy/dummy-3.png";
-import DummyImgService4 from "../../assets/img/dummy/dummy-4.png";
-import AboutWP from './about';
+import { AnimatePresence, motion, useInView, useScroll, useTransform } from "framer-motion"
 import PartnerWP from './partner';
 import HeaderWording from '../../components/header-wording';
+import ServiceWP from './service-wp';
+import VideoComponent from '../../components/VideoComponent';
+import { useAppSelector } from '../../utils/reduxHooks';
+import TwoStar from "../../assets/img/icon/two-start.png"
+import videoAnimasi from "../../assets/video/Handwritter_1.mp4"
+import FeedbackComponent from './feedback';
+import ImgOne from "../../assets/img/dummy/img-one.png";
+import ImgTwo from "../../assets/img/dummy/img-two.png";
 
 const WelcomePage = () => {
     const ref = useRef(null)
-
+    const ref2 = useRef(null)
+    const ref3 = useRef(null)
+    const ref4 = useRef(null)
+    const { settings } = useAppSelector(state => state.settings)
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ['-50vh', '50vh']
+        offset: ['-50vh', '50vh']   
     })
     const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1])
 
-    const [servImg, setServImg] = useState('')
+
+    const isInView = useInView(ref2, {
+        margin: '0px 0px -65% 0px',
+        once: true
+    })
+    const isInView3 = useInView(ref3, {
+        margin: '0px 0px -45% 0px',
+        once: true
+    })
+    const isInView4 = useInView(ref4, {
+        margin: '0px 0px -25% 0px',
+        once: true
+    })
+
+
+    const stacks = {
+        active: (custom: number) => ({ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0, transition: { duration: 0.5, delay: custom * 0.2 } }),
+        inActive: { y: 50, opacity: 0 },
+    }
+
     return (
         <motion.main ref={ref} id='wp'  >
             {/* header */}
@@ -29,23 +54,42 @@ const WelcomePage = () => {
                 desc='Glums was founded with a vision to empower businesses of all sizes to thrive in the ever-evolving digital world.'
             />
             {/* video */}
-            <motion.section className='section-video__wp container' style={{ scale }}>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Pc15hOD1ris?si=NRr9veZLi1eKfTkY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  ></iframe>
-            </motion.section>
+            <AnimatePresence>
+                <motion.section className='section-video__wp container' style={{ scale }}>
+                    {settings && <VideoComponent src={settings.video_profile_path || ''} />}
+                </motion.section>
+            </AnimatePresence>
             {/* about */}
-            <AboutWP />
-            {/* service */}
-            <motion.section className='section-service__wp' >
-                {servImg && <AnimatePresence><motion.img animate={{ opacity: 1}} initial={{ opacity: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className='bg__service' src={servImg} alt="menu" width={'100%'} height={'100%'} loading='lazy' /> </AnimatePresence>}
-                <div className="navigation__service">
-                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService)} onMouseOut={() => setServImg('')} >Digital Marketing / </motion.a>
-                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService2)} onMouseOut={() => setServImg('')} >Graphic Designing / </motion.a>
-                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService3)} onMouseOut={() => setServImg('')}>Web & App Development / </motion.a>
-                    <motion.a href='/detail' className="navlist" onMouseOver={() => setServImg(DummyImgService4)} onMouseOut={() => setServImg('')}>Video & Photo Branding  </motion.a>
-                    {servImg && <AnimatePresence> <motion.img animate={{ opacity: 1, scale: 1 }} initial={{ opacity: 0 , scale: 0.5}} exit={{ opacity: 0 }}  transition={{ duration: 0.5 }} src={servImg} className='thumb__service' alt="menu services" width={238} height={295} loading='lazy' /> </AnimatePresence>}
+            <motion.section ref={ref2} className='section__wording'>
+                <motion.div initial="inActive" variants={stacks} animate="active" custom={1} className='title'>Expertly Designed for Excellence and your Enduring Success</motion.div>
+                <motion.div initial="inActive" variants={stacks} animate="active" custom={2} className='desc'>A Group Of Creative Thinkers</motion.div>
+                <motion.div initial="inActive" variants={stacks} animate="active" custom={3}  className="animate-wording">
+                    <motion.img className='star' src={TwoStar} alt="two star" width={67} height={53} />
+                    <video width="234" height="93" autoPlay muted loop>
+                        <source src={videoAnimasi} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </motion.div>
+            </motion.section>
+
+            <motion.section  className='section__more-about'>
+                <div ref={ref3} className="content-one">
+                    <motion.div initial={{x:-100, opacity:0}} animate={isInView3?{opacity: 1, x:0}:''} transition={{duration:0.5}}  className="img__one">
+                        <img src={ImgOne} alt="one" width={1000} height={1000} />
+                    </motion.div>
+                    <motion.p initial={{x:100, opacity:0}} animate={isInView3?{opacity: 1, x:0}:''} transition={{duration:0.5}}  className='desc__one'>We're Glums, a powerhouse of digital strategists driving businesses to online success.  Our mission: Provide you with tools for brand awareness and to achieve your online goals</motion.p>
+                </div>
+                <div ref={ref4} className="content-two">
+                    <motion.div initial={{x:-100, opacity:0}} animate={isInView4?{opacity: 1, x:0}:''} transition={{duration:0.5}} className='desc__two'>Making It Truly Unforgettable and Leaving a Lasting Impact on Your Audience</motion.div>
+                    <motion.div initial={{x:100, opacity:0}} animate={isInView4?{opacity: 1, x:0}:''} transition={{duration:0.5}} className="img__two">
+                        <img src={ImgTwo} alt="two" width={1000} height={1000} />
+                    </motion.div>
                 </div>
             </motion.section>
+            {/* service */}
+            <ServiceWP />
             {/* partner */}
+            <FeedbackComponent />
             <PartnerWP />
         </motion.main>
     )

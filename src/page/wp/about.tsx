@@ -2,15 +2,19 @@ import { useRef, useState } from 'react'
 import { motion, useInView } from "framer-motion";
 import TwoStar from "../../assets/img/icon/two-start.png"
 import Carousel from '../../components/carousel';
-import DummyImgAbout from "../../assets/img/dummy/about.png";
 import ArrowAnimate from '../../components/arrowAnimate';
+import { useAppSelector } from '../../utils/reduxHooks';
+import { useGetUsersQuery } from '../../utils/redux/services/usersApi';
 
 const AboutWP = () => {
     const ref = useRef(null)
+    const {data, isSuccess} = useGetUsersQuery({keywords:''})
+    const { settings } = useAppSelector(state => state.settings)
     const isInView = useInView(ref, {
         margin: '0px 0px -65% 0px',
         once: true
     })
+
 
     const stacks = {
         active: (custom: number) => ({ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0, transition: { duration: 0.5, delay: custom * 0.2 } }),
@@ -25,15 +29,15 @@ const AboutWP = () => {
                 <div className="left-section__about">
                     <motion.div className='headeline__about' initial="inActive" variants={stacks} animate="active" custom={1}>About Us <img src={TwoStar} alt="star" width={98} height={79} /></motion.div>
                     <motion.div className="wording__about" initial="inActive" variants={stacks} animate="active" custom={2}>
-                        <p className='wording__p'>We're Glums, a powerhouse of digital strategists driving businesses to online success. Our mission: Provide you with tools for brand awareness and to achieve your online goals. We're a blend of creative minds and data wizards who love creating beautiful, results-driven experiences.</p> <p className='wording__p'> Ready to dominate? Contact us now for a free consultation!</p></motion.div>
+                        <p className='wording__p'>{settings.about_desc.split('\n').map((p, i) => <p key={i}>{p}</p>)}</p>
+                    </motion.div>
                     <motion.a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} initial="inActive" variants={stacks} animate="active" custom={3} href='/about' className='show-more__about'>Show me more <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></motion.a>
 
                 </div>
-                <Carousel>
-                    <CardImage img={DummyImgAbout} name='Anthony Daniels' role='UI / UX Designer' />
-                    <CardImage img={DummyImgAbout} name='Fadil F' role='UI / UX Designer' />
-                    <CardImage img={DummyImgAbout} name='Johan' role='UI / UX Designer' />
-                    <CardImage img={DummyImgAbout} name='Rais' role='UI / UX Designer' />
+                <Carousel> 
+                    {isSuccess && data?.data?.map((item: { id: number, name: string, role: string, img_path: string }) => (
+                        <CardImage key={item.id} img={item.img_path} name={item.name} role={item.role} />
+                    ))}
                 </Carousel>
             </div>
         </motion.section>

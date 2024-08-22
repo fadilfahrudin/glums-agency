@@ -1,11 +1,30 @@
 @use "../../styles/scss/media";
 
 #contact{
+    position: relative;
     width: 100%;
     height: auto;
     margin-bottom: 134px;
     padding: 5vw;
     padding-top: 0;
+    .alert{
+        position: fixed;
+        top: 0px;
+        left: 0%;
+        right: 0%;
+        margin: auto;
+        z-index: 9999;
+        background-color: #ea5206;
+        width: 250px;
+        height: 50px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 0 #f56118;
+        
+    }
     .container{
         display: flex;
         margin-top: 10vh;

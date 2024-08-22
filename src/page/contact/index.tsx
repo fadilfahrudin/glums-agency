@@ -2,38 +2,12 @@
 import HeroImg from "../../assets/img/contact-hero.png";
 import './contact.scss';
 import { motion, AnimatePresence } from "framer-motion";
-import DOMPurify from 'dompurify';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import ErrorMessage from "../../components/error-message";
-
-const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-
-Yup.addMethod(Yup.string, 'email', function validateEmail(message) {
-    return this.matches(emailPattern, {
-        message,
-        name: 'email',
-        excludeEmptyString: true,
-    });
-});
-
-const MessageSchema = Yup.object().shape({
-    fullname: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
-    message: Yup.string().required('Required Message'),
-    noHandphone: Yup.number().min(123, 'Min number 4 digit').max(9234567890113, `Max number 14 digit`).required('Required'),
-});
-
-
-interface FormValues {
-    fullname: string;
-    email: string;
-    message: string;
-    noHandphone: string;
-}
+import emailjs from '@emailjs/browser';
+import React, { useRef, useState } from "react";
 
 
 const ContactPage = () => {
+    const form = useRef<HTMLFormElement>(null);
     const stacks = {
         active: (custom: number) => ({ y: 0, transition: { duration: 0.5, delay: custom * 0.2 } }),
         inActive: { y: 50 },
@@ -43,76 +17,61 @@ const ContactPage = () => {
         active: (custom: number) => ({ y: 0, opacity: 1, transition: { duration: 0.5, delay: custom * 0.2 } }),
         inActive: { y: -50, opacity: 0 },
     }
+    const [alertMsg, setAlertMsg] = useState('Sending Email...');
+    const [alert, setAlert] = useState(false);
 
-    const handleSubmit = (values: FormValues) => {
-        const sanitizedValues = {
-            fullname: DOMPurify.sanitize(values.fullname),
-            email: DOMPurify.sanitize(values.email),
-            message: DOMPurify.sanitize(values.message),
-            noHandphone: DOMPurify.sanitize(values.noHandphone),
-        }
-        console.log(sanitizedValues);
-        // Send data to API
-
-        window.location.href = '/contact'
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        setAlert(true)
+        e.preventDefault();
+        emailjs
+            .sendForm('service_3asbwyd', 'template_48s6tna', form.current!, {
+                publicKey: 'Lso7x_QsohMVpzinT',
+            }).then(
+                () => {
+                    setAlertMsg('Email Sent!');
+                    setTimeout(() => {
+                        setAlert(false)
+                    }, 500)
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000)
+                },
+                (error: { text: string; }) => {
+                    console.log('FAILED...', error.text);
+                }
+            )
     }
 
 
     return (
         <section id="contact">
+            <AnimatePresence> {alert && <motion.div transition={{ duration: 0.5 }} animate={{ scale: 1, y: 50 }} initial={{ scale: 0.5, y: -50 }} exit={{ scale: 0.5, y: -50 }} className="alert">{alertMsg}</motion.div>}</AnimatePresence>
             <div className="container">
                 <div className="form-section">
                     <motion.div initial="inActive" animate="active" variants={stacks2} custom={1} className="title-form">Contact Us Now</motion.div>
                     <motion.div initial="inActive" animate="active" variants={stacks2} custom={2} className="desc-form">We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.</motion.div>
 
-                    <Formik
-                        initialValues={{ fullname: '', email: '', message: '', noHandphone: '' }}
-                        validationSchema={MessageSchema}
-                        onSubmit={values => handleSubmit(values)}
-                    >
-                        {({ errors, touched }) => (
-                            <Form>
-                                <label htmlFor="name">
-                                    <motion.p initial="inActive" animate="active" variants={stacks} custom={3}>Name</motion.p>
-                                    <Field type="text" name="fullname" placeholder="Full Name" />
-                                    <AnimatePresence>
-                                        {errors.fullname && touched.fullname ? (
-                                            <ErrorMessage message={errors.fullname} />
-                                        ) : null}
-                                    </AnimatePresence>
-                                </label>
-                                <label htmlFor="no-ho">
-                                    <motion.p initial="inActive" animate="active" variants={stacks} custom={5}>Telephone Number</motion.p>
-                                    <Field type="number" name="noHandphone" placeholder="Your Number" />
-                                    <AnimatePresence>
-                                        {errors.noHandphone && touched.noHandphone ? (
-                                            <ErrorMessage message={errors.noHandphone} />
-                                        ) : null}
-                                    </AnimatePresence>
-                                </label>
-                                <label htmlFor="email">
-                                    <motion.p initial="inActive" animate="active" variants={stacks} custom={6}>Email</motion.p>
-                                    <Field type="email" name="email" placeholder="Your Email" />
-                                    <AnimatePresence>
-                                        {errors.email && touched.email ? (
-                                            <ErrorMessage message={errors.email} />
-                                        ) : null}
-                                    </AnimatePresence>
-                                </label>
-                                <label htmlFor="message">
-                                    <motion.p initial="inActive" animate="active" variants={stacks} custom={7}>Message</motion.p>
-                                    <Field name="message" as="textarea" placeholder="Example text" />
-                                    <AnimatePresence>
-                                        {errors.message && touched.message ? (
-                                            <ErrorMessage message={errors.message} />
-                                        ) : null}
-                                    </AnimatePresence>
-                                </label>
-                                <button className="btn-submit" type="submit">Submit</button>
-                            </Form>
-                        )}
-                    </Formik>
+                    <form ref={form} onSubmit={(e) => handleSubmit(e)}>
+                        <label htmlFor="user_name">
+                            <motion.p initial="inActive" animate="active" variants={stacks} custom={3}>Name</motion.p>
+                            <input type="text" name="user_name" placeholder="Full Name" />
+                        </label>
+                        <label htmlFor="user_number">
+                            <motion.p initial="inActive" animate="active" variants={stacks} custom={4}>Telephone Number</motion.p>
+                            <input type="number" name="user_number" placeholder="Your Number" />
+                        </label>
+                        <label htmlFor="user_email">
+                            <motion.p initial="inActive" animate="active" variants={stacks} custom={5}>Email</motion.p>
+                            <input type="email" name="user_email" placeholder="Your Email" />
+                        </label>
+                        <label htmlFor="message">
+                            <motion.p initial="inActive" animate="active" variants={stacks} custom={6}>Message</motion.p>
+                            <textarea name="message" id="message" cols={30} rows={10} placeholder="Your Message"></textarea>
+                        </label>
 
+                        <button className="btn-submit" type="submit" disabled={alert}>Submit</button>
+
+                    </form>
                 </div>
                 <div className="img-hero">
                     <img src={HeroImg} alt="Hero Image" width={537} height={745} />

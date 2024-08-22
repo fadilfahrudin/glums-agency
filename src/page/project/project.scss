@@ -1,0 +1,309 @@
+@use "../../styles/scss/media";
+
+#detail-project {
+    width: 100%;
+    height: auto;
+    .about-wrapper__info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        .about-info {
+            width: 618px;
+            @include media.ipad {
+                width: 100%;
+            }
+            @include media.mobile {
+                width: 100%;
+            }
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            .title__info {
+                text-align: center;
+                font-size: clamp(40px, 8vw, 80px);
+                letter-spacing: -5px;
+                @include media.ipad {
+                    letter-spacing: -1px;
+                }
+                @include media.mobile {
+                    letter-spacing: -0.2px;
+                }
+                line-height: 100%;
+                color: #000;
+            }
+            .desc__info {
+                text-align: center;
+                width: 478px;
+                font-size: 20px;
+                letter-spacing: -1px;
+                color: #5e5e5e;
+                @include media.ipad {
+                    width: 100%;
+                }
+                @include media.mobile {
+                    width: 100%;
+                    letter-spacing: -0.2px;
+                }
+            }
+            .show-more__about {
+                @include media.mobile {
+                    align-self: center;
+                }
+                @include media.ipad {
+                    align-self: center;
+                }
+                width: max-content;
+                padding: 8px 16px;
+                border: 1px solid #000;
+                border-radius: 52px;
+                display: flex;
+                align-items: center;
+                gap: 0 14px;
+                span {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background-color: #212121;
+                }
+            }
+        }
+    }
+    .section__banner {
+        height: 180vh;
+        padding: 0 clamp(2rem, 8vw, 170px);
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+        img {
+            position: sticky;
+            top: 20vh;
+            width: 100%;
+            height: 620px;
+            object-fit: cover;
+            object-position: center;
+        }
+        @include media.mobile {
+            img {
+                top: 30vh;
+                height: 300px;
+            }
+        }
+    }
+    .section__case_study {
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding: 0 clamp(2rem, 8vw, 170px);
+        margin-bottom: 100px;
+        .title {
+            width: 30%;
+            font-size: clamp(16px, 3vw, 24px);
+            color: #5e5e5e;
+            letter-spacing: -0.5px;
+        }
+        .detail {
+            width: 70%;
+            font-size: clamp(26px, 4vw, 48px);
+            letter-spacing: -1px;
+            color: #000;
+            line-height: 120%;
+        }
+        @include media.mobile {
+            flex-direction: column;
+            gap: 10px;
+            .title {
+                letter-spacing: 0px;
+                line-height: 150%;
+                width: 100%;
+            }
+            .detail {
+                width: 100%;
+                letter-spacing: -0.1px;
+                line-height: 150%;
+            }
+        }
+        @include media.ipad {
+            .title {
+                letter-spacing: 0px;
+                line-height: 150%;
+            }
+            .detail {
+                letter-spacing: 0.9px;
+                line-height: 150%;
+            }
+        }
+    }
+    .section__moreImage {
+        width: 100%;
+        height: 531px;
+        display: flex;
+        gap: 40px;
+        padding: 0 clamp(2rem, 8vw, 170px);
+        margin-bottom: 100px;
+        overflow: hidden;
+        .imageitem {
+            width: calc(100% / 3 - 40px);
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        @include media.mobile{
+            flex-direction: column;
+            height: auto;
+            .imageitem{
+                width: 100%;
+                img{
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
+        }
+        @include media.ipad{
+            flex-direction: column;
+            gap: 20px;
+            height: auto;
+            .imageitem{
+                width: 100%;
+                height: 70vh;
+                img{
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center top;
+                }
+            }
+        }
+    }
+    .section__desc {
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding: 0 clamp(2rem, 8vw, 170px);
+        margin-bottom: 50px;
+        .title {
+            width: 30%;
+            font-size: clamp(18px, 3vw, 24px);
+            color: #5e5e5e;
+            letter-spacing: -0.5px;
+        }
+        .detail {
+            .project__name {
+                display: block;
+                font-family: "HelveticaNeue-Medium", sans-serif;
+                font-size: clamp(18px, 3vw, 24px);
+                font-weight: 500;
+                line-height: 150%;
+                margin-bottom: 20px;
+            }
+            width: 70%;
+            font-size: clamp(18px, 3vw, 24px);
+            letter-spacing: 0px;
+            color: #000;
+            line-height: 120%;
+        }
+        @include media.mobile{
+            .title{
+                letter-spacing: 0px;
+            }
+            .detail{
+                line-height: 150%;
+                letter-spacing: 0.2px;
+            }
+        }
+        @include media.ipad{
+            .title{
+                letter-spacing: 0px;
+            }
+            .detail{
+                line-height: 150%;
+                letter-spacing: 0px;
+            }
+        }
+    }
+    .section__service {
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding: 0 clamp(2rem, 8vw, 170px);
+        margin-bottom: 100px;
+        .title {
+            width: 30%;
+            font-size: clamp(18px, 3vw, 24px);
+            color: #5e5e5e;
+            letter-spacing: -0.5px;
+            @include media.mobile{
+                letter-spacing: 0px;
+            }
+        }
+        .detail {
+            width: 70%;
+            .serviceName {
+                padding: 6px 12px;
+                border-radius: 16px;
+                border: 1px solid #000;
+                font-size: clamp(14px, 2vw, 18px);
+                color: #000;
+                line-height: 150%;
+            }
+        }
+    }
+    .section__why {
+        display: flex;
+        gap: 22px;
+        height: auto;
+        padding: 0 clamp(2rem, 8vw, 170px);
+        .title {
+            font-family: "HelveticaNeue-Medium", sans-serif;
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 500;
+            color: #000;
+        }
+        .imgWhy {
+            flex-shrink: 0;
+            width: 570px;
+            height: 659px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        .detail {
+            align-self: center;
+            font-size: clamp(18px, 3vw, 24px);
+            color: #5e5e5e;
+        }
+        @include media.mobile{
+            flex-direction: column;
+            .imgWhy{
+                width: 100%;
+                height: auto;
+                img{
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
+        }
+        @include media.ipad{
+            flex-direction: column;
+            .imgWhy{
+                width: 100%;
+                height: auto;
+                img{
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}

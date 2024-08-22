@@ -24,7 +24,7 @@ export default function Pointer() {
             case "menu-footer":
                 setOtherClass("footer-list");
                 break;
-            case "footer-list":
+            case "footer-list-a":
                 setOtherClass("footer-list");
                 break;
             case "list-footer":
@@ -45,10 +45,13 @@ export default function Pointer() {
             case "show-more__about":
                 setOtherClass("small");
                 break;
+            case "show-more__service":
+                setOtherClass("small");
+                break;
             case "item__name":
                 setOtherClass("small");
                 break;
-            case "small-ponter":
+            case "small-pointer":
                 setOtherClass("small");
                 break;
             case "arrowwrap__animate":

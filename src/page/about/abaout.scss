@@ -2,18 +2,18 @@
 
 #about {
     .team-name {
-        font-size: clamp(50px, 10vw, 100px);;
+        font-size: clamp(50px, 10vw, 100px);
         letter-spacing: -1px;
         color: #000;
     }
-    .team-desc{
+    .team-desc {
         width: 525px;
         font-size: 20px;
-        color: #5E5E5E;
-        @include media.ipad{
+        color: #5e5e5e;
+        @include media.ipad {
             width: 100%;
         }
-        @include media.mobile{
+        @include media.mobile {
             width: 100%;
         }
     }
@@ -64,9 +64,10 @@
                     font-size: 100px;
                     line-height: 100%;
                     width: max-content;
-                    transition: all 0.5s ease-in-out 0.2s,bottom 0.5s ease-in-out 1s;
                 }
                 .role {
+                    flex-shrink: 0;
+                    white-space: nowrap;
                     position: relative;
                     display: flex;
                     align-items: center;
@@ -83,6 +84,8 @@
                     }
                 }
                 .title {
+                    flex-shrink: 0;
+                    white-space: nowrap;
                     font-family: "HelveticaNeue-Medium", sans-serif;
                     color: #f5f5f5;
                     font-size: 24px;
@@ -98,6 +101,9 @@
             @include media.mobile {
                 flex-shrink: 0;
                 flex-basis: 100%;
+                img {
+                    height: 80vh;
+                }
                 .info {
                     left: 24px;
                     .number {
@@ -110,6 +116,9 @@
             @include media.ipad {
                 flex-shrink: 0;
                 flex-basis: 100%;
+                img {
+                    height: 80vh;
+                }
                 .info {
                     left: 24px;
                     .number {
@@ -123,30 +132,28 @@
             &.active {
                 .info {
                     left: 24px;
-                    transition: all 0.5s ease-in-out;
-                    .number{
+                    .number {
                         bottom: 100px;
                         right: 100%;
                         left: 0%;
-                        transition: all 0.5s ease-in-out 1s ,bottom 0.5s ease-in-out 1.5s;
                     }
                 }
             }
         }
     }
 
-    .about-wrapper__info{
+    .about-wrapper__info {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         width: 100%;
-        .about-info{
+        .about-info {
             width: 618px;
-            @include media.ipad{
+            @include media.ipad {
                 width: 100%;
             }
-            @include media.mobile{
+            @include media.mobile {
                 width: 100%;
             }
             margin: auto;
@@ -154,31 +161,33 @@
             flex-direction: column;
             align-items: center;
             gap: 24px;
-            .title__info{
+            .title__info {
                 text-align: center;
-                font-size: clamp(40px, 8vw, 80px);;
+                font-size: clamp(40px, 8vw, 80px);
                 letter-spacing: -5px;
-                @include media.ipad{
+                @include media.ipad {
                     letter-spacing: -1px;
                 }
-                @include media.mobile{
+                @include media.mobile {
                     letter-spacing: -1px;
                 }
                 line-height: 100%;
                 color: #000;
             }
-            .desc__info{
+            .desc__info {
                 text-align: center;
                 width: 478px;
-                @include media.ipad{
-                    width: 100%;
-                }
-                @include media.mobile{
-                    width: 100%;
-                }
                 font-size: 20px;
                 letter-spacing: -1px;
-                color: #5E5E5E;
+                color: #5e5e5e;
+                @include media.ipad {
+                    width: 100%;
+                    letter-spacing: 0px;
+                }
+                @include media.mobile {
+                    letter-spacing: 0px;
+                    width: 100%;
+                }
             }
             .show-more__about {
                 @include media.mobile {

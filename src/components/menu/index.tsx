@@ -2,9 +2,19 @@ import { useState } from 'react'
 import { motion, Variants } from "framer-motion"
 import "./menu.scss"
 import ArrowAnimate from '../arrowAnimate'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../utils/reduxHooks'
+import { setBurgerMenu } from '../../utils/redux/slice/burgerMenuSlice'
 const Menu = () => {
+    const dispatch = useAppDispatch()
+    const navigation = useNavigate()
     const [hoverIndex, setHoverIndex] = useState<number | null>(null)
+    const { settings } = useAppSelector(state => state.settings)
 
+    const handleNavigation = (path: string) => {
+        navigation(path)
+        dispatch(setBurgerMenu(false))
+    }
 
     const handleMouseEnter = (index: number) => {
         setHoverIndex(index);
@@ -59,15 +69,15 @@ const Menu = () => {
         <motion.nav initial={{ y: 1000 }} animate={{ y: 0 }} exit={{ y: -1000 }} transition={{ duration: 0.5 }} className='menu__nav'>
             <div className="list__nav">
                 {menu.map((item) => (
-                    <motion.a initial="close" animate="open" variants={itemVariant} custom={item.id} onMouseEnter={() => handleMouseEnter(item.id)} onMouseLeave={handleMouseLeave} key={item.id} href={item.path} className='nav__item'>
+                    <motion.button initial="close" animate="open" variants={itemVariant} custom={item.id} onMouseEnter={() => handleMouseEnter(item.id)} onMouseLeave={handleMouseLeave} key={item.id} onClick={() => handleNavigation(item.path)} className='nav__item'>
                         <motion.span className='item__name'>{item.name}</motion.span>
                         <ArrowAnimate black={true} gap={23} width={26} height={24} isHovered={hoverIndex === item.id} />
-                    </motion.a>
+                    </motion.button>
                 ))}
             </div>
             <div className="license">
-                <span>PT. Great Luminate Innovations</span>
-                <span>Jl. Prof. DR. Satrio, RT.14/RW.4, Kuningan, Karet Kuningan, Setia Budi, Kota Jakarta Selatan, Daerah Khusu Ibukota Jakarta 12940</span>
+                <span>{settings.pt_name}</span>
+                <span>{settings.pt_address}</span>
             </div>
         </motion.nav>
     )

@@ -20,8 +20,4 @@ const ArrowAnimate = ({ isHovered, width, height, gap, black }: Props) => {
     )
 }
 
-ArrowAnimate.defaultProps = {
-    black: false
-}
-
 export default ArrowAnimate

@@ -32,10 +32,13 @@
             height: auto;
             margin: auto;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            flex-wrap: wrap;
             gap: clamp(10px, 2vw, 16px);
             .footer-list {
+                display: flex;
+                justify-content: center ;
+                gap: clamp(10px, 2vw, 16px);
                 a {
                     position: relative;
                     font-family: "HelveticaNeue-Light", sans-serif;
