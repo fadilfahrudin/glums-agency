@@ -31,7 +31,7 @@ const RelatedProject: React.FC<RelatedProjectProps> = ({ serviceId, service_name
                     <div className="horizontalScroll">
                         <div className="relatedTitle">Related Projects</div>
                         <motion.div className='horizontalContent' style={window.innerWidth > 1080 ? { x: transformX } : { x: 0 }}>
-                            {isSuccess && data.data.map((item, index) => (
+                            {isSuccess && data.data.map((item:{id: number, name: string, banner_project_path: string, created_at: string, case_study: string}, index:number) => (
                                 <ProjectCard key={item.id} id={item.id} total={data.data.length} index={index + 1} project_name={item.name} service_name={service_name} banner_project={item.banner_project_path} created_at={item.created_at} case_study={item.case_study} />
                             ))}
                         </motion.div>

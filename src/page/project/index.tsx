@@ -1,6 +1,6 @@
 import  { useEffect, useRef, useState } from 'react'
 import "./project.scss"
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { useGetProjectByIdQuery } from '../../utils/redux/services/projecsApi'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import HeaderWording from '../../components/header-wording'
@@ -12,7 +12,7 @@ const Project = () => {
     const { id } = useParams()
     const { data, isSuccess } = useGetProjectByIdQuery(id)
     const { settings } = useAppSelector(state => state.settings)
-    const ref = useRef(null)
+    const ref = useRef<HTMLDivElement | null>(null)
     const [projectName, setProjectName] = useState()
     const [bannerProject, setBannerProject] = useState()
     const [caseStudy, setCaseStudy] = useState()
@@ -55,6 +55,7 @@ const Project = () => {
     return (
         <motion.main id='detail-project'>
             <HeaderWording
+                scrollTo={() => ref.current && ref.current.scrollIntoView({ behavior: 'smooth' })}
                 width={79}
                 headline1='ELEVATE YOUR'
                 headline2='DIGITAL EXPERIENCE'
@@ -108,7 +109,7 @@ const Project = () => {
                         <motion.div className='desc__info'>{settings.what_we_do_desc}</motion.div>
                     </InViewSection>
                     <InViewSection initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                        <motion.a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} href='/about' className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></motion.a>
+                        <NavLink onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} to={'/services'} className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></NavLink>
                     </InViewSection>
                 </div>
             </section>

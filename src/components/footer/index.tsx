@@ -20,12 +20,12 @@ const Footer = () => {
                         <Link className="footer-list-a" to="/">Home</Link>
                         <Link className="footer-list-a" to="/about">About</Link>
                         <Link className="footer-list-a" to="/services">Services</Link>
-                        <Link className="footer-list-a" to="/library">Works</Link>
+                        <Link className="footer-list-a" to="/contact">Contact Us</Link>
                     </li>
                     <li className="footer-list">
                         <Link className="footer-list-a" target="_blank" rel="noreferrer" to="mailto:glums-agency@gmail.com">Email</Link>
-                        <Link className="footer-list-a" target="_blank" rel="noreferrer" to="http://www.instagram.com/fadilfahrudin/" >Instagram</Link>
-                        <Link className="footer-list-a" target="_blank" rel="noreferrer" to="https://www.linkedin.com/in/fadillahfahrudin/">LinkedIn</Link>
+                        <Link className="footer-list-a" target="_blank" rel="noreferrer" to="http://www.instagram.com/glums/" >Instagram</Link>
+                        <Link className="footer-list-a" target="_blank" rel="noreferrer" to="https://www.linkedin.com/in/glums/">LinkedIn</Link>
                     </li>
                 </ul>
                 <div className="footer-licence ">

@@ -37,16 +37,11 @@ const Menu = () => {
         },
         {
             'id': 3,
-            'name': 'Library',
-            'path': '/library'
-        },
-        {
-            'id': 4,
             'name': 'About',
             'path': '/about'
         },
         {
-            'id': 5,
+            'id': 4,
             'name': 'Contact',
             'path': '/contact'
         },

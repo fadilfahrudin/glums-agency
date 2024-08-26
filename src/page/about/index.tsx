@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import ArrowAnimate from '../../components/arrowAnimate';
 import { useAppSelector } from '../../utils/reduxHooks';
 import { useGetUsersQuery } from '../../utils/redux/services/usersApi';
+import { NavLink } from 'react-router-dom';
 
 interface Props {
     id: number,
@@ -17,10 +18,12 @@ interface Props {
     length: number
 }
 const About = () => {
+
+
     const [isHovered, setIsHovered] = useState(false)
     const { settings } = useAppSelector(state => state.settings)
     const { data, isSuccess } = useGetUsersQuery({ keywords: '' })
-    const ref1 = useRef(null)
+    const ref1 = useRef<HTMLElement | null>(null)
     const ref2 = useRef(null)
     const isInView = useInView(ref1, {
         margin: '0px 0px -25% 0px',
@@ -44,6 +47,7 @@ const About = () => {
     return (
         <motion.main id='about' >
             <HeaderWording
+                scrollTo={() => ref1.current && ref1.current.scrollIntoView({ behavior: 'smooth' })}
                 width={79}
                 headline1='THE ACHITECTS'
                 headline2='CREATING MAGIC'
@@ -71,7 +75,7 @@ const About = () => {
                         CREATING MAGIC </motion.div>
                     <motion.div initial="inActive" variants={stacks2} animate="active" custom={2} className='desc__info'>{settings.what_we_do_desc}</motion.div>
 
-                    <motion.a initial="inActive" variants={stacks2} animate="active" custom={3} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} href='/about' className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></motion.a>
+                    <NavLink onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} to={'/services'} className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></NavLink>
                 </div>
             </section>
             <Gap height={118} />

@@ -19,7 +19,7 @@
     }
     .section__wording {
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -245,9 +245,10 @@
         }
     }
     .section-service__wp {
-        height: 100vh;
+        min-height: 100vh;
         width: 100%;
         padding-left: clamp(2rem, 11vw, 170px);
+        padding-bottom: 234px;
         overflow: hidden;
         background-color: #000a0f;
         position: relative;
@@ -255,12 +256,12 @@
         flex-direction: column;
         justify-content: center;
         .titleWrapper {
-            position: absolute;
-            top: 0;
+            position: relative;
             padding-top: 55px;
             z-index: 2;
             width: 80%;
             height: auto;
+            margin-bottom: 94px;
             .title {
                 font-family: "HelveticaNeue-Regular", sans-serif;
                 font-size: clamp(30px, 5vw, 48px);
@@ -425,7 +426,7 @@
                         font-size: clamp(18px, 1.7vw, 24px);
                         font-weight: lighter;
                         line-height: 150%;
-                        letter-spacing: -1px;
+                        letter-spacing: 1px;
                         color: #5e5e5e;
                         text-align: center;
                         margin-bottom: 24px;

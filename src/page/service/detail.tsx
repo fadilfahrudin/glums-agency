@@ -4,7 +4,7 @@ import { useRef, useState } from "react"
 import { useAppSelector } from "../../utils/reduxHooks"
 import ArrowAnimate from "../../components/arrowAnimate"
 import "./detail.scss"
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import ImgStaticOne from "../../assets/img/dummy/img-two.png"
 import ImgStaticTwo from "../../assets/img/dummy/img-one.png"
 import ImgStaticThree from "../../assets/img/dummy/img-three.png"
@@ -17,6 +17,8 @@ const Detail = () => {
     const { settings } = useAppSelector(state => state.settings)
     const [isHovered, setIsHovered] = useState(false)
     const { data, isSuccess } = useGetServiceByIdQuery(id)
+    const target = useRef<HTMLElement | null>(null)
+
     const ref = useRef(null)
 
     const ref2 = useRef(null)
@@ -46,12 +48,15 @@ const Detail = () => {
     return (
         <motion.main id="detail-service">
             <HeaderWording
-                width={79}
+                scrollTo={() => window.scrollTo({ behavior: 'smooth', top: target.current ? target.current?.getBoundingClientRect().y - 100 : 0})}
+                width={85}
                 headline1='ELEVATE YOUR'
                 headline2='DIGITAL EXPERIENCE'
                 desc='We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.'
             />
-            {isSuccess && <ServiceCard data={data?.service} />}
+            <motion.div ref={target as React.RefObject<HTMLDivElement>} >
+                {isSuccess && <ServiceCard data={data?.service} />}
+            </motion.div>
             <div className="static-content-one">
                 <div ref={ref} className="content-one">
                     <motion.div initial={{ opacity: 0, x: -100 }} animate={isInView ? { opacity: 1, x: 0 } : ''} transition={{ duration: 0.5 }} className="img-one">
@@ -89,7 +94,7 @@ const Detail = () => {
                         CREATING MAGIC</motion.div>
                     <motion.div initial="inActive" variants={stacks2} animate="active" custom={2} className='desc__info'>{settings.what_we_do_desc}</motion.div>
 
-                    <motion.a initial="inActive" variants={stacks2} animate="active" custom={3} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} href='/about' className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></motion.a>
+                    <NavLink onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} to={'/services'} className='show-more__about'>What we do <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></NavLink>
                 </div>
             </section>
         </motion.main>

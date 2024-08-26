@@ -12,9 +12,10 @@ interface Props {
     headline2: string,
     desc: string,
     width?: number,
-    homeWp?: boolean
+    homeWp?: boolean,
+    scrollTo: () => void
 }
-const HeaderWording = ({ headline1, headline2, desc, width, homeWp }: Props) => {
+const HeaderWording = ({ headline1, headline2, desc, width, homeWp, scrollTo }: Props) => {
 
 
     // State untuk menyimpan ukuran window
@@ -68,7 +69,7 @@ const HeaderWording = ({ headline1, headline2, desc, width, homeWp }: Props) => 
                     <motion.div className='text-item' >
                         <motion.div className="text-pointer" initial="inActive" variants={toDown} animate="active" custom={1} >{headline1}</motion.div>
                     </motion.div>
-                    <motion.a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} initial="inActive" variants={other} animate="active" custom={4} href='/goTo' className='text-action'>Explore Now <ArrowAnimate gap={25} width={26} height={24} isHovered={isHovered} /></motion.a>
+                    <motion.button onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => scrollTo()} initial="inActive" variants={other} animate="active" custom={4} className='text-action'>Explore Now <ArrowAnimate gap={25} width={26} height={24} isHovered={isHovered} /></motion.button>
                 </div>
                 <div className='welcome-text'>
                     <motion.img initial={{ opacity: 0, scale: 0 }} animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0 }} transition={{ duration: 0.5, delay: 1.5 }} src={TwoStar} alt="Two Star" width={139} height={109} />

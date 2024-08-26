@@ -13,6 +13,7 @@ import ImgOne from "../../assets/img/dummy/img-one.png";
 import ImgTwo from "../../assets/img/dummy/img-two.png";
 
 const WelcomePage = () => {
+    const target = useRef<HTMLElement | null>(null)
     const ref = useRef(null)
     const ref2 = useRef(null)
     const ref3 = useRef(null)
@@ -20,10 +21,9 @@ const WelcomePage = () => {
     const { settings } = useAppSelector(state => state.settings)
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ['-50vh', '50vh']   
+        offset: ['-50vh', '50vh']
     })
     const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1])
-
 
     const isInView = useInView(ref2, {
         margin: '0px 0px -65% 0px',
@@ -48,6 +48,7 @@ const WelcomePage = () => {
         <motion.main ref={ref} id='wp'  >
             {/* header */}
             <HeaderWording
+                scrollTo={() => target.current && target.current.scrollIntoView({ behavior: 'smooth' })}
                 homeWp={true}
                 headline1='BEYOND SOLUTION'
                 headline2='BEYOND EXPECTATION'
@@ -55,7 +56,7 @@ const WelcomePage = () => {
             />
             {/* video */}
             <AnimatePresence>
-                <motion.section className='section-video__wp container' style={{ scale }}>
+                <motion.section ref={target} className='section-video__wp container' style={{ scale }}>
                     {settings && <VideoComponent src={settings.video_profile_path || ''} />}
                 </motion.section>
             </AnimatePresence>
@@ -63,7 +64,7 @@ const WelcomePage = () => {
             <motion.section ref={ref2} className='section__wording'>
                 <motion.div initial="inActive" variants={stacks} animate="active" custom={1} className='title'>Expertly Designed for Excellence and your Enduring Success</motion.div>
                 <motion.div initial="inActive" variants={stacks} animate="active" custom={2} className='desc'>A Group Of Creative Thinkers</motion.div>
-                <motion.div initial="inActive" variants={stacks} animate="active" custom={3}  className="animate-wording">
+                <motion.div initial="inActive" variants={stacks} animate="active" custom={3} className="animate-wording">
                     <motion.img className='star' src={TwoStar} alt="two star" width={67} height={53} />
                     <video width="234" height="93" autoPlay muted loop>
                         <source src={videoAnimasi} type="video/mp4" />
@@ -72,16 +73,16 @@ const WelcomePage = () => {
                 </motion.div>
             </motion.section>
 
-            <motion.section  className='section__more-about'>
+            <motion.section className='section__more-about'>
                 <div ref={ref3} className="content-one">
-                    <motion.div initial={{x:-100, opacity:0}} animate={isInView3?{opacity: 1, x:0}:''} transition={{duration:0.5}}  className="img__one">
+                    <motion.div initial={{ x: -100, opacity: 0 }} animate={isInView3 ? { opacity: 1, x: 0 } : ''} transition={{ duration: 0.5 }} className="img__one">
                         <img src={ImgOne} alt="one" width={1000} height={1000} />
                     </motion.div>
-                    <motion.p initial={{x:100, opacity:0}} animate={isInView3?{opacity: 1, x:0}:''} transition={{duration:0.5}}  className='desc__one'>We're Glums, a powerhouse of digital strategists driving businesses to online success.  Our mission: Provide you with tools for brand awareness and to achieve your online goals</motion.p>
+                    <motion.p initial={{ x: 100, opacity: 0 }} animate={isInView3 ? { opacity: 1, x: 0 } : ''} transition={{ duration: 0.5 }} className='desc__one'>We're Glums, a powerhouse of digital strategists driving businesses to online success.  Our mission: Provide you with tools for brand awareness and to achieve your online goals</motion.p>
                 </div>
                 <div ref={ref4} className="content-two">
-                    <motion.div initial={{x:-100, opacity:0}} animate={isInView4?{opacity: 1, x:0}:''} transition={{duration:0.5}} className='desc__two'>Making It Truly Unforgettable and Leaving a Lasting Impact on Your Audience</motion.div>
-                    <motion.div initial={{x:100, opacity:0}} animate={isInView4?{opacity: 1, x:0}:''} transition={{duration:0.5}} className="img__two">
+                    <motion.div initial={{ x: -100, opacity: 0 }} animate={isInView4 ? { opacity: 1, x: 0 } : ''} transition={{ duration: 0.5 }} className='desc__two'>Making It Truly Unforgettable and Leaving a Lasting Impact on Your Audience</motion.div>
+                    <motion.div initial={{ x: 100, opacity: 0 }} animate={isInView4 ? { opacity: 1, x: 0 } : ''} transition={{ duration: 0.5 }} className="img__two">
                         <img src={ImgTwo} alt="two" width={1000} height={1000} />
                     </motion.div>
                 </div>

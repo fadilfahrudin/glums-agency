@@ -29,8 +29,10 @@ const FeedbackComponent = () => {
                 setSlideId(1)
                 x.set(0)
             } else {
-                setSlideId(slideId + 1)
-                x.set(-ref.current?.clientWidth * slideId)
+                if (ref.current) {
+                    setSlideId(slideId + 1)
+                    x.set(-ref.current.clientWidth * slideId)
+                }
             }
         }, 5000); // Interval 5 detik
         return () => clearInterval(interval); // Membersihkan interval saat komponen unmount

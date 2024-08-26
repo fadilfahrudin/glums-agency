@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import "./services.scss";
 import HeaderWording from '../../components/header-wording'
 import Gap from '../../components/gap';
-import { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useGetServicesQuery } from '../../utils/redux/services/serviceApi';
 interface Props {
     id: number,
@@ -13,23 +13,25 @@ interface Props {
     sub_excerpt: string
 }
 const Services = () => {
+    const target = useRef<HTMLElement | null>(null)
     const { data, isSuccess } = useGetServicesQuery({ keywords: "" })
     return (
         <motion.main id='services' >
             <HeaderWording
+                scrollTo={() => target.current && target.current.scrollIntoView({ behavior: 'smooth' })}
                 width={79}
                 headline1='WE BELIEVE IN'
                 headline2='CREATING MAGIC'
                 desc='We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.'
             />
 
-            <div className="container">
+            <motion.div ref={target as React.RefObject<HTMLDivElement>} className="container">
                 <div id='wrapper-main' className="wrapper-main" >
                     {
                         isSuccess && data?.data.map((data: Props, i: number) => <CardImage key={data.id} id={data.id} service_banner_path={data.service_banner_path} service_name={data.service_name} excerpt={data.excerpt} sub_excerpt={data.sub_excerpt} i={i} />)
                     }
                 </div>
-            </div>
+            </motion.div>
             <Gap height={118} />
         </motion.main>
     )

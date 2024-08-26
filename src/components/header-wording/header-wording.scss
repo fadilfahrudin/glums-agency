@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    padding: 20px clamp(67px, 11vw, 167px);
+    padding: 20px clamp(35px, 11vw, 167px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,6 +63,7 @@
                 font-family: "HelveticaNeue-Light", sans-serif;
                 font-size: 24px;
                 font-weight: lighter;
+                color: #000;
                 span {
                     display: flex;
                     justify-content: center;

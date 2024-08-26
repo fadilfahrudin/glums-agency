@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useState } from 'react'
 import { useGetServicesQuery } from "../../utils/redux/services/serviceApi"
 import ArrowAnimate from '../../components/arrowAnimate';
+import { NavLink } from "react-router-dom";
 
 
 const ServiceWP = () => {
@@ -22,7 +23,7 @@ const ServiceWP = () => {
                 ))}
                 <AnimatePresence>{servImg && <motion.img animate={{ opacity: 1, scaleY: 1 }} initial={{ opacity: 0, scaleY: 0 }} exit={{ opacity: 0, scaleY: 0 }} transition={{ duration: 0.6 }} src={servImg} className='thumb__service' alt="menu services" width={238} height={295} loading='lazy' />} </AnimatePresence>
             </div>
-            <motion.a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} href='/about' className='show-more__service'>Show me more <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></motion.a>
+            <NavLink onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} to='/services' className='show-more__service'>Show me more <ArrowAnimate gap={20} width={19.38} height={16.62} isHovered={isHovered} /></NavLink>
 
         </motion.section>
     )
