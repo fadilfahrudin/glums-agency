@@ -10,16 +10,18 @@ interface RelatedProjectProps {
 const RelatedProject: React.FC<RelatedProjectProps> = ({ serviceId, service_name }) => {
     const { data, isSuccess } = useGetProjectByServiceIdQuery(Number(serviceId))
     const [scrollLength, setScrollLength] = useState(0)
+    const [stickyHight, setStickyHight] = useState(0)
     const targetRef = useRef(null)
     const { scrollYProgress } = useScroll({
         target: targetRef,
     })
-    const x = useTransform(scrollYProgress, [0, 1], ['0vh', `-${scrollLength - 38}vh`]);
+    const x = useTransform(scrollYProgress, [0, 1], ['0vw', `-${scrollLength}vw`]);
     const transformX = isSuccess && data.data.length > 1 ? x : 0
     useEffect(() => {
 
         if (isSuccess) {
-            setScrollLength(data.data.length * 100)
+            setScrollLength(data.data.length * 42)
+            setStickyHight(data.data.length * 100)
         }
 
     }, [isSuccess])
@@ -27,7 +29,7 @@ const RelatedProject: React.FC<RelatedProjectProps> = ({ serviceId, service_name
     return (
         <>
             {isSuccess && data.data.length > 0 ?
-                <div ref={targetRef} className="horizontalScrollContainer" style={window.innerWidth > 1080 ? { height: `${scrollLength}` } : { height: 'auto' }}>
+                <div ref={targetRef} className="horizontalScrollContainer" style={window.innerWidth > 1080 ? { height: `${stickyHight}vh` } : { height: 'auto' }}>
                     <div className="horizontalScroll">
                         <div className="relatedTitle">Related Projects</div>
                         <motion.div className='horizontalContent' style={window.innerWidth > 1080 ? { x: transformX } : { x: 0 }}>
