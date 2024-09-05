@@ -14,7 +14,7 @@ const RelatedProject: React.FC<RelatedProjectProps> = ({ serviceId, service_name
     const { scrollYProgress } = useScroll({
         target: targetRef,
     })
-    const x = useTransform(scrollYProgress, [0, 1], ['0vh', `-${scrollLength - 44}vh`]);
+    const x = useTransform(scrollYProgress, [0, 1], ['0vh', `-${scrollLength - 38}vh`]);
     const transformX = isSuccess && data.data.length > 1 ? x : 0
     useEffect(() => {
 
@@ -27,7 +27,7 @@ const RelatedProject: React.FC<RelatedProjectProps> = ({ serviceId, service_name
     return (
         <>
             {isSuccess && data.data.length > 0 ?
-                <div ref={targetRef} className="horizontalScrollContainer" style={window.innerWidth > 1080 ? { height: `${scrollLength}vh` } : { height: 'auto' }}>
+                <div ref={targetRef} className="horizontalScrollContainer" style={window.innerWidth > 1080 ? { height: `${scrollLength}` } : { height: 'auto' }}>
                     <div className="horizontalScroll">
                         <div className="relatedTitle">Related Projects</div>
                         <motion.div className='horizontalContent' style={window.innerWidth > 1080 ? { x: transformX } : { x: 0 }}>
