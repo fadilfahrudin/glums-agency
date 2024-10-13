@@ -56,8 +56,10 @@ const WelcomePage = () => {
             />
             {/* video */}
             <AnimatePresence>
-                <motion.section ref={target} className='section-video__wp container' style={{ scale }}>
-                    {settings && <VideoComponent src={settings.video_profile_path || ''} />}
+                <motion.section ref={target} className='section-video__wp container'>
+                    <motion.div style={{ scale }}>
+                        {settings && <VideoComponent src={settings.video_profile_path || ''} />}
+                    </motion.div>
                 </motion.section>
             </AnimatePresence>
             {/* about */}

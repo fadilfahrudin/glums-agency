@@ -143,6 +143,7 @@
         min-height: 100vh;
         display: flex;
         gap: 20px;
+        overflow-x: hidden;
         .content-one {
             width: calc(30% - 20px);
             height: 100%;
@@ -265,6 +266,7 @@
         gap: 20px;
         width: 100%;
         height: 431px;
+        overflow-x: hidden;
         .img-three {
             flex-shrink: 0;
             width: 373px;
@@ -341,6 +343,7 @@
     .static-content-three {
         margin: 142px auto;
         width: 837px;
+        overflow-x: hidden;
         .desc-static-three {
             font-size: clamp(34px, 3.7vw, 64px);
             font-weight: 400;
