@@ -21,9 +21,9 @@ const WelcomePage = () => {
     const { settings } = useAppSelector(state => state.settings)
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ['-50vh', '50vh']
+        offset: ['0vh', '50vh']
     })
-    const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1])
+    const scale = useTransform(scrollYProgress, [0, 1], [1.2, 0.9])
 
     const isInView = useInView(ref2, {
         margin: '0px 0px -65% 0px',

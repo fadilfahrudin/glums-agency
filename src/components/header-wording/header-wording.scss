@@ -9,8 +9,12 @@
     align-items: center;
     justify-content: center;
     &.home-wp{
-        min-height: max-content;
-        margin: 88px 0;
+        min-height: 90vh;
+        top: -7vh;
+        padding-top: 80px;
+        .scrolldown-wrap {
+            bottom: 0;
+        }
     }
     .wording-wrapp {
         height: max-content;
