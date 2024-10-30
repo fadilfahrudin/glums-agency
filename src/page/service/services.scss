@@ -1,126 +1,151 @@
 @use "../../styles/scss/media";
 
 #services {
-    .wrapper-main {
-        position: relative;
-        width: 100%;
-        min-height: 100vh;
-        overflow: hidden;
-        display: flex;
-
-        @include media.mobile {
+    .mainServices{
+        .wrapper-main {
+            scroll-snap-type: y mandatory;
+            width: 100%;
             height: auto;
+            display: flex;
             flex-direction: column;
             gap: 20px;
-            overflow: auto;
-        }
-        @include media.ipad {
-            height: auto;
-            overflow: auto;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .img-item {
-            position: relative;
-            width: calc(100%/ 4);
-            height: 100vh;
-            overflow: hidden;
-            flex-shrink: 1;
-            flex-basis: auto;
-            img {
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-            }
-            .info {
-                position: absolute;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                bottom: 35px;
-                left: 0;
-                .number {
-                    position: absolute;
-                    bottom: 2vh;
-                    right: 0%;
-                    left: 0%;
-                    margin: auto;
-                    font-family: "HelveticaNeue-Bold", sans-serif;
-                    color: #fff;
-                    font-size: 100px;
-                    line-height: 100%;
-                    width: max-content;
-                }
-                .role {
-                    flex-shrink: 0;
-                    white-space: nowrap;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    gap: 0 20px;
-                    font-family: "HelveticaNeue-Light", sans-serif;
-                    font-size: 16px;
-                    color: #b0b0b0;
-                    &::after {
-                        content: "";
-                        position: relative;
-                        width: 167px;
-                        height: 1px;
-                        background-color: #b0b0b0;
-                    }
-                }
-                .title {
-                    flex-shrink: 0;
-                    white-space: nowrap;
-                    font-family: "HelveticaNeue-Medium", sans-serif;
-                    color: #f5f5f5;
-                    font-size: 24px;
-                    @include media.mobile{
-                        white-space: wrap;
-                    }
-                }
-                .desc {
-                    width: 219px;
-                    font-family: "HelveticaNeue-Light", sans-serif;
-                    font-size: 12px;
-                    color: #b0b0b0;
-                }
-            }
-
+            // background-color: blue;
             @include media.mobile {
-                flex-shrink: 0;
-                width: 100%;
-                height: 70vh;
-                .info {
-                    left: 24px;
-                    .number {
-                        bottom: 130px;
-                        right: 100%;
-                        left: 0%;
-                    }
-                }
+                height: auto;
+                flex-direction: column;
+                gap: 20px;
+                overflow: auto;
             }
             @include media.ipad {
+                height: auto;
+                overflow: auto;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .img-item {
+                position: sticky;
+                top: 0;
                 flex-shrink: 0;
+                position: relative;
                 width: 100%;
-                height: 85vh;
-                .info {
-                    left: 24px;
-                    .number {
-                        bottom: 100px;
-                        right: 100%;
-                        left: 0%;
+                height: 100vh;
+                overflow: hidden;
+                padding: 1vh 0;
+                display: flex;
+                align-items: center;
+                scroll-snap-align: center;
+                perspective: 500px;
+                .imgWrapper {
+                    width: 50%;
+                    height: 100%;
+                    flex-shrink: 0;
+                    position: relative;
+                    overflow: hidden;
+                    img {
+                        object-fit: cover;
+                        aspect-ratio: 3/3.75;
+    
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        height: 100%;
                     }
                 }
-            }
-
-            &.active {
                 .info {
-                    left: 24px;
-                    .number{
-                        bottom: 100px;
-                        right: 100%;
-                        left: 0%;
+                    position: relative;
+                    width: 50%;
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    padding-top: clamp(2rem, 6vh, 52px);
+                    padding-left: clamp(2rem, 11vw, 52px);
+                    padding-right: clamp(2rem, 11vw, 52px);
+                    .number {
+                        font-family: "HelveticaNeue-Regular", sans-serif;
+                        color: #000;
+                        font-size: clamp(34px, 10vw, 146px);
+                        line-height: 100%;
+                        letter-spacing: clamp(-6px, 0.5vw, -12px);
+                    }
+                    .excerpt {
+                        width: 373px;
+                        font-family: "HelveticaNeue-Regular", sans-serif;
+                        font-size: clamp(20px, 3vw, 48px);
+                        color: #000;
+                    }
+                    .detail_service {
+                        position: absolute;
+                        bottom: clamp(2rem, 8vh, 95px);
+                        left: 0;
+                        width: 100%;
+                        .service_wrapper {
+                            padding-left: clamp(2rem, 11vw, 52px);
+                            width: 65%;
+                            .service_name {
+                                position: relative;
+                                display: flex;
+                                align-items: center;
+                                gap: 20px;
+                                font-family: "HelveticaNeue-Bold", sans-serif;
+                                font-size: clamp(16px, 3vw, 20px);
+                                color: #000;
+                                flex-shrink: 0;
+                                white-space: nowrap;
+                                &::after {
+                                    content: "";
+                                    display: inline-block;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: #000;
+                                }
+                            }
+                            .sub_service {
+                                font-family: "HelveticaNeue-Light", sans-serif;
+                                font-size: clamp(16px, 3vw, 20px);
+                                color: #5e5e5e;
+                            }
+                        }
+                    }
+                }
+    
+                @include media.mobile {
+                    flex-shrink: 0;
+                    width: 100%;
+                    height: 70vh;
+                    .info {
+                        left: 24px;
+                        .number {
+                            bottom: 130px;
+                            right: 100%;
+                            left: 0%;
+                        }
+                    }
+                }
+                @include media.ipad {
+                    flex-shrink: 0;
+                    width: 100%;
+                    height: 85vh;
+                    .info {
+                        left: 24px;
+                        .number {
+                            bottom: 100px;
+                            right: 100%;
+                            left: 0%;
+                        }
+                    }
+                }
+    
+                &.active {
+                    .info {
+                        left: 24px;
+                        .number {
+                            bottom: 100px;
+                            right: 100%;
+                            left: 0%;
+                        }
                     }
                 }
             }
