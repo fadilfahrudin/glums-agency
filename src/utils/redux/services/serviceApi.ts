@@ -13,8 +13,11 @@ export const servicesApi: any = createApi({
         }),
         getServiceById: build.query({
             query: (id) => `services/${id}`,
+        }),
+        getSubServcieByServiceId: build.query({
+            query: (id) => `sub-services/${id}`,
         })
     })
 })
 
-export const { useGetServiceByIdQuery, useGetServicesQuery } = servicesApi
+export const { useGetServiceByIdQuery, useGetServicesQuery, useGetSubServcieByServiceIdQuery } = servicesApi

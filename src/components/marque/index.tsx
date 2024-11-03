@@ -1,15 +1,15 @@
 import React from "react";
-import "./marquee.scss";
+import styles from "./marque.module.scss";
 const Marquee = ({ children }: { readonly children: React.ReactNode }) => {
     return (
-        <div className="marquee-container" >
-            <div className="marquee">
+        <div className={styles.marqueContainer} >
+            <div className={styles.marque}>
                 {children}
             </div>
-            <div className="marquee">
+            <div className={styles.marque}>
                 {children}
             </div>
-            <div className="marquee">
+            <div className={styles.marque}>
                 {children}
             </div>
         </div>
@@ -17,4 +17,4 @@ const Marquee = ({ children }: { readonly children: React.ReactNode }) => {
 };
 
 
-export default Marquee;
+export default Marquee

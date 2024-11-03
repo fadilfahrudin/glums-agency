@@ -1,3 +1,4 @@
+import { useGetSubServcieByServiceIdQuery } from "../../utils/redux/services/serviceApi"
 
 
 type serviceType = {
@@ -13,11 +14,11 @@ interface Props {
     data: serviceType
 }
 const ServiceCard = ({ data }: Props) => {
-    const type = data.sub_excerpt.split(',')
+    const {data: subService}= useGetSubServcieByServiceIdQuery(data.id)
     return (
         <div className="serviceCard">
             <div className='CardContainer'>
-                {type.map((item, index) => <Child type={item} key={index} title={data.service_name} img={data.service_banner_path} desc={data.desc} />)}
+                {subService && subService.subService.map((item, index) => <Child type={item.sub_service_name} key={index} title={data.service_name} img={item.sub_service_banner_path} desc={item.sub_service_desc} />)}
             </div>
         </div>
     )

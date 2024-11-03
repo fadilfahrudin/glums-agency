@@ -7,18 +7,16 @@ import ArrowAnimate from '../../components/arrowAnimate';
 import { useAppSelector } from '../../utils/reduxHooks';
 import { useGetUsersQuery } from '../../utils/redux/services/usersApi';
 import { NavLink } from 'react-router-dom';
+import Marquee from '../../components/marque';
 
 interface Props {
     id: number,
-    i: number,
     name: string,
     role: string,
     img_path: string,
     desc: string,
-    length: number
 }
 const About = () => {
-
 
     const [isHovered, setIsHovered] = useState(false)
     const { settings } = useAppSelector(state => state.settings)
@@ -54,21 +52,27 @@ const About = () => {
                 desc='We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.'
             />
 
-
             <Gap height={60} />
             <section ref={ref1} className='container'>
                 <motion.div initial="inActive" variants={stacks} animate="active" custom={1} className='team-name'>Team Members</motion.div>
-                <motion.div initial="inActive" variants={stacks} animate="active" custom={2} className='team-desc'>{settings.team_member_desc}</motion.div>
+                <motion.div initial="inActive" variants={stacks} animate="active" custom={2} className='team-desc'>
+                    <div className='team-desc__wrapper'>
+                        {settings.team_member_desc}
+                    </div>
+                </motion.div>
             </section>
-            <Gap height={48} />
+            <Gap height={52} />
 
-            <section className="container">
+            <Marquee>
                 <div id='wrapper-main' className="wrapper-main" >
                     {
-                        isSuccess && data?.data.map((user: Props, i: number) => <CardImage key={user.id} {...user} i={i} length={data.data.length} />)
+                        isSuccess && data?.data.map((user: Props) => <CardImage key={user.id} {...user}/>)
                     }
                 </div>
-            </section>
+            </Marquee>
+
+            <Gap height={155} />
+
             <section ref={ref2} className="container about-wrapper__info">
                 <div className="about-info">
                     <motion.div initial="inActive" variants={stacks2} animate="active" custom={1} className='title__info'>WE BELIEVE IN
@@ -85,18 +89,16 @@ const About = () => {
 
 
 
-const CardImage = ({ id, img_path, role, name, desc, length, i }: Props) => {
-    const [hoveredId, setHoveredId] = useState<number | null>(null)
-
+const CardImage = ({ img_path, role, name, desc }: Props) => {
+    const [isHovered, setIsHovered] = useState(false)
     return (
-        <motion.div style={window.innerWidth > 1080 ? { width: `calc(100% / ${length})` } : { width: '100%' }} onMouseEnter={() => setHoveredId(id)} onMouseLeave={() => setHoveredId(null)} whileHover={{ flexBasis: '549px', flexShrink: 0 }} transition={{ duration: 0.5 }} className={`img-item ${hoveredId == id ? 'active' : ''}`} >
-            <img src={img_path} alt="img" loading='lazy' width={549} height={793} />
-            <div className="info">
-                <motion.div className='number'>0{i + 1}</motion.div>
-                <motion.div initial={window.innerWidth > 1080 ? { opacity: 0 } : { opacity: 1 }} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0 } : ''} transition={hoveredId == id ? { duration: 0.3, } : { duration: 0.3 }} className='role'>{role}</motion.div>
-                <motion.div initial={window.innerWidth > 1080 ? { opacity: 0 } : { opacity: 1 }} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0 } : ''} transition={hoveredId == id ? { duration: 0.3, } : { duration: 0.3, }} className="title">{name}</motion.div>
-                <motion.div initial={window.innerWidth > 1080 ? { opacity: 0 } : { opacity: 1 }} animate={window.innerWidth > 1080 ? { opacity: hoveredId == id ? 1 : 0 } : ''} transition={hoveredId == id ? { duration: 0.3, } : { duration: 0.3, }} className="desc">{desc}</motion.div>
-            </div>
+        <motion.div className={`img-item`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
+            <motion.img className={isHovered ? 'hovered' : ''}  src={img_path} alt="img" loading='lazy' />
+            <motion.div className="info" >
+                <motion.div className='role' >{role}</motion.div>
+                <motion.div className="title" >{name}</motion.div>
+                <motion.div className="desc" >{desc}</motion.div>
+            </motion.div>
         </motion.div>
     )
 }
