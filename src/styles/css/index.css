@@ -101,7 +101,7 @@ ul {
 }
 @media (min-width: 468px) and (max-width: 1024px) {
   .container {
-    padding: 0 3rem;
+    padding: 0 12vw;
   }
 }
 @media (max-width: 467px) {

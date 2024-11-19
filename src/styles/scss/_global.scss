@@ -96,7 +96,7 @@ ul {
     padding: 0 50px;
     position: relative;
     @include media.ipad {
-        padding: 0 3rem;
+        padding: 0 12vw;
     }
     @include media.mobile {
         padding: 0 2rem;
