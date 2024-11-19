@@ -101,11 +101,11 @@ ul {
 }
 @media (min-width: 468px) and (max-width: 1024px) {
   .container {
-    padding: 0 50px;
+    padding: 0 3rem;
   }
 }
 @media (max-width: 467px) {
   .container {
-    padding: 0 10px;
+    padding: 0 2rem;
   }
 }/*# sourceMappingURL=index.css.map */

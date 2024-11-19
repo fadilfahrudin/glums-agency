@@ -21,6 +21,7 @@ interface Props {
 function useParallax(value: MotionValue<number>, distance: number) {
     return useTransform(value, [0, 1], [-distance, distance])
 }
+
 const Services = () => {
     const target = useRef<HTMLElement | null>(null)
     const { data, isSuccess } = useGetServicesQuery({ keywords: "" })
@@ -52,15 +53,36 @@ const Services = () => {
 const CardImage = ({ id, service_banner_path, service_name, i, desc }: Props) => {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({ target: ref, offset: ['-100vh', '100vh'] })
+    const { scrollYProgress: scrollYMobile } = useScroll({ target: ref, offset: ['-150vh', '100vh'] })
     const y = useParallax(scrollYProgress, 1000)
+    const yMobile = useParallax(scrollYMobile, 1000)
     const { data } = useGetSubServcieByServiceIdQuery(id)
     const isMobile = useResponsive('(max-width: 1024px)')
 
-    console.log(isMobile)
+    console.log(isMobile, 'ini mobile')
+
+
+    if (isMobile) {
+        return (
+            <motion.a href={`service/detail/${id}`} className={`img-item`} >
+                <motion.div className='number'>0{i + 1}</motion.div>
+                <motion.div className="excerpt">{desc}</motion.div>
+                <div ref={ref} className='imgWrapper'>
+                    <img src={service_banner_path} alt="img" loading='lazy' width={549} height={793} />
+                </div>
+                <motion.div className='detail_service'>
+                    <motion.div className='service_wrapper'>
+                        <motion.div className='service_name'>{service_name}</motion.div>
+                        <motion.div className="sub_service">{data && data.subService.map((item: subServiceType) => <span key={item.id}>{item.sub_service_name}</span>)}</motion.div>
+                    </motion.div>
+                </motion.div>
+            </motion.a >
+        )
+    }
 
     return (
         <motion.a href={`service/detail/${id}`} className={`img-item`} >
-            <motion.div style={isMobile ? { y:0 } : { y }} className="info">
+            <motion.div style={{ y }} className="info">
                 <motion.div className='number'>0{i + 1}</motion.div>
                 <motion.div className="excerpt">{desc}</motion.div>
                 <motion.div className='detail_service'>
@@ -68,7 +90,7 @@ const CardImage = ({ id, service_banner_path, service_name, i, desc }: Props) =>
                         <motion.div className='service_name'>{service_name}</motion.div>
                         <motion.div className="sub_service">{data && data.subService.map((item: subServiceType) => <span key={item.id}>{item.sub_service_name}</span>)}</motion.div>
                     </motion.div>
-                </motion.div> 
+                </motion.div>
             </motion.div>
             <div ref={ref} className='imgWrapper'>
                 <img src={service_banner_path} alt="img" loading='lazy' width={549} height={793} />
