@@ -49,7 +49,7 @@ const Detail = () => {
         <motion.main id="detail-service">
             <HeaderWording
                 scrollTo={() => window.scrollTo({ behavior: 'smooth', top: target.current ? target.current?.getBoundingClientRect().y - 100 : 0})}
-                width={85}
+                width={100}
                 headline1='ELEVATE YOUR'
                 headline2='DIGITAL EXPERIENCE'
                 desc='We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.'
