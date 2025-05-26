@@ -30,7 +30,7 @@ const Services = () => {
         <motion.main id='services' >
             <HeaderWording
                 scrollTo={() => target.current && target.current.scrollIntoView({ behavior: 'smooth' })}
-                width={79}
+                width={100}
                 headline1='WE BELIEVE IN'
                 headline2='CREATING MAGIC'
                 desc='We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.'

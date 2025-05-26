@@ -46,7 +46,7 @@ const About = () => {
         <motion.main id='about' >
             <HeaderWording
                 scrollTo={() => ref1.current && ref1.current.scrollIntoView({ behavior: 'smooth' })}
-                width={79}
+                width={100}
                 headline1='THE ACHITECTS'
                 headline2='CREATING MAGIC'
                 desc='We believe that every brand has a unique story to tell, and we are here to help you amplify that story through innovative and effective digital strategies.'
