@@ -18,7 +18,7 @@ const ServiceCard = ({ data }: Props) => {
     return (
         <div className="serviceCard">
             <div className='CardContainer'>
-                {subService && subService.subService.map((item, index) => <Child type={item.sub_service_name} key={index} title={data.service_name} img={item.sub_service_banner_path} desc={item.sub_service_desc} />)}
+                {subService?.subService.map((item: { id: number, sub_service_name: string, sub_service_banner_path: string, sub_service_desc: string }, index:number) => <Child type={item.sub_service_name} key={index} title={data.service_name} img={item.sub_service_banner_path} desc={item.sub_service_desc} />)}
             </div>
         </div>
     )
@@ -39,8 +39,7 @@ const Child = ({ type, title, desc, img }: { type: string, title: string, desc: 
                 <img src={img} alt={title} width={400} height={400} />
             </div>
             <div className="scrolldown">
-                Scroll Down
-                <span className='ic-scroll'></span>
+                Scroll Down <span className='ic-scroll'></span>
             </div>
         </div>
     )

@@ -53,13 +53,12 @@ const Services = () => {
 const CardImage = ({ id, service_banner_path, service_name, i, desc }: Props) => {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({ target: ref, offset: ['-100vh', '100vh'] })
-    const { scrollYProgress: scrollYMobile } = useScroll({ target: ref, offset: ['-150vh', '100vh'] })
+    // const { scrollYProgress: scrollYMobile } = useScroll({ target: ref, offset: ['-150vh', '100vh'] })
     const y = useParallax(scrollYProgress, 1000)
-    const yMobile = useParallax(scrollYMobile, 1000)
+    // const yMobile = useParallax(scrollYMobile, 1000) not use
     const { data } = useGetSubServcieByServiceIdQuery(id)
     const isMobile = useResponsive('(max-width: 1024px)')
 
-    console.log(isMobile, 'ini mobile')
 
 
     if (isMobile) {
